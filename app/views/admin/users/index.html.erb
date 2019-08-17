@@ -1,13 +1,12 @@
 <div class="container">
-<p></p>
-<h2>ユーザーの一覧</h2>
-
-<div class="tab-content" id="nav-tabContent">
-  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-  <ul class="list-group list-group-flush">
-  <% @users.each do |user| %>
-  <li class="list-group-item"><%= link_to user.title, post_path(user) %></li>
-  <% end %>
-</ul>
+  <p></p>
+  <h2>ユーザーの一覧</h2>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+      <ul class="list-group list-group-flush">
+        <% @users.each do |user| %>
+          <li class="list-group-item"><%= link_to user.title, post_path(user) %></li>
+        <% end %>
+      </ul>
   </div>
-  </div>
+</div>

@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   def new
   end
+
   def create
     user = User.find_by(email: session_params[:email])
 
@@ -11,6 +12,7 @@ class SessionsController < ApplicationController
       render :new
     end
   end
+
   def destroy
     reset_session
     redirect_to root_url, notice: 'ログアウトしました。'
