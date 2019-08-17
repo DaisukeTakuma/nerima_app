@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-md-3">
+    <h2><%= @post.title %></h2>
+    <div>
+      要約: <%= @post.summary %>
+    </div>
+    <div>
+      記事詳細: <%= @post.description %>
+    </div>
+    <div>
+      URL: <%= @post.url %>
+    </div>
+    <hr>
+    <div>
+    <ul>
+      <li><%= link_to 'Home', root_path %></li>
+      <li><%= link_to '編集', edit_post_path %></li>
+      <li><%= link_to '削除', @post, method: :delete, data: { confirm: "Are you sure?" } %></li>
+    </ul>
+  </div>
+</div>
