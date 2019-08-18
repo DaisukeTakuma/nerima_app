@@ -3,13 +3,14 @@
   <h2>ユーザーログイン</h2>
   <%= form_with(scope: :session, local:true) do |f| %>
   <div class="form-group">
-    <label>Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="sample@example.com">
+    <%= f.label :Email_address %>
+    <!--この：emailはDBの絡むと対応しているのでは？？-->
+    <%= f.email_field :email, class: "form-control", placeholder: "sample@example.com" %>
   </div>
   <div class="form-group">
-    <label>Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    <%= f.label :Password %>
+    <%= f.password_field :password, class: "form-control", placeholder: "password" %>
   </div>
-  <button type="submit" class="btn btn-primary">ログインする</button>
+  <%= f.submit "ログインする" ,class: "btn btn-primary" %>
   <% end %>
 </div>
