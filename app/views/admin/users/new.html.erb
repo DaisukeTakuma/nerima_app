@@ -3,7 +3,7 @@
   <h2>ユーザー登録</h2>
   <%= form_with(model: [:admin, @user], local: true) do |f| %>
     <div class="form-group">
-      <%= f.label :name ,"ユーザー名" %>
+      <%= f.label :name, "ユーザー名" %>
       <%= f.text_field :name, class: "form-control", placeholder: "test_user" %>
     </div>
     <div class="form-group">
@@ -11,8 +11,8 @@
       <%= f.email_field :email, class: "form-control", placeholder: "sample@example.com" %>
     </div>
     <div class="form-group">
-        <%= f.label :admin, "管理者権限" %>
-        <%= f.check_box :admin, class: "form-check" %>
+      <%= f.label :admin, "管理者権限" %>
+      <%= f.check_box :admin, class: "form-check" %>
     </div>
     <div class="form-group">
       <%= f.label :password, "パスワード" %>

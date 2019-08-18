@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>ネリマー</title>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
@@ -22,13 +23,16 @@
                   <%= link_to "投稿する", "/posts/new", class: "nav-link" %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "投稿一覧", "posts_path", class: "nav-link" %>
+                  <%= link_to "投稿一覧", posts_path, class: "nav-link" %>
                 </li>
+                  <% if current_user.admin? %>
+                    <li class="nav-item">
+                      <!--元々はadmin_users_path、または/admin/users/indexで飛べなかった-->
+                      <%= link_to "ユーザー一覧", admin_users_url, class: "nav-link" %>
+                    </li>
+                  <% end %>
                 <li class="nav-item">
-                  <%= link_to "ユーザー一覧", "admin_users_path", class: "nav-link" %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to "ログアウト", "logout_path",method: :delete, class: "nav-link" %>
+                  <%= link_to "ログアウト", /logout", method: :delete, class: "nav-link" %>
                 </li>
               <% else %>
                 <li class="nav-item">

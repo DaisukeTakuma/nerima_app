@@ -1,10 +1,10 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all
+    @posts = current_user.posts
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = current_user.posts.find(params[:id])
   end
 
   def new
@@ -12,11 +12,11 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @posts = Post.find(params[:id])
+    @posts = current_user.posts.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
+    @post = current_user.posts.find(params[:id])
     if @post.update(post_params)
       redirect_to root_path, notice: 'Success!'
     else
@@ -26,15 +26,15 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    post = Post.find(params[:id])
+    post = current_user.posts.find(params[:id])
     post.destroy
     redirect_to root_path, notice: 'Success!'
   end
 
   def create
-    post = Post.new(post_params)
-    post.save!
-    redirect_to root_path, notice: "「#{post.title}」を投稿しました。"
+    @post = Post.new(post_params)
+    @post.save!
+    redirect_to root_path, notice: "「#{@post.title}」を投稿しました。"
   end
 
   private
