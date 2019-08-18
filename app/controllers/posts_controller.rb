@@ -33,8 +33,12 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.save!
-    redirect_to root_path, notice: "「#{@post.title}」を投稿しました。"
+
+    if @post.save!
+      redirect_to @post, notice: "「#{@post.title}」を投稿しました。"
+    else
+      render :new
+    end
   end
 
   private

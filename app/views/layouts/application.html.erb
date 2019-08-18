@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <%= csrf_meta_tags %>
     <title>ネリマー</title>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -32,7 +33,7 @@
                     </li>
                   <% end %>
                 <li class="nav-item">
-                  <%= link_to "ログアウト", /logout", method: :delete, class: "nav-link" %>
+                  <%= link_to "ログアウト", logout_path, method: :delete, class: "nav-link" %>
                 </li>
               <% else %>
                 <li class="nav-item">

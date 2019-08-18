@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
-  skip_before_filter :verify_authenticity_token
-  protect_from_forgery with: :exception
+  #skip_before_filter :verify_authenticity_token
   helper_method :current_user
   before_action :login_required
+  protect_from_forgery with: :exception
 
   private
   def current_user
