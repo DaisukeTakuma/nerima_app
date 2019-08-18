@@ -15,7 +15,7 @@
       <ul>
         <li><%= link_to 'Home', root_path %></li>
         <li><%= link_to '編集', edit_post_path %></li>
-        <li><%= link_to('削除', post_path, {method: "delete"}, data: { confirm: "Are you sure?" }) %></li>
+        <li><%= link_to '削除', post_path, method: "delete", data: { confirm: "Are you sure?" } %></li>
       </ul>
     </div>
   </div>
