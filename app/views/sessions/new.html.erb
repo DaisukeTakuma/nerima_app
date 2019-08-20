@@ -5,7 +5,7 @@
   <%= form_with(scope: :session, local:true) do |f| %>
   <div class="form-group">
     <%= f.label :Email_address %>
-    <!--この：emailはDBのカラムと対応しているのでは？-->
+    <!--この：emailはDBのカラムと対応している。-->
     <%= f.email_field :email, class: "form-control", placeholder: "sample@example.com" %>
   </div>
   <div class="form-group">

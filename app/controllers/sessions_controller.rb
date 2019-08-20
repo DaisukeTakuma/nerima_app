@@ -3,6 +3,9 @@ class SessionsController < ApplicationController
 
   def new
   end
+  def show
+    @posts = current_user.posts
+  end
 
   def create
     user = User.find_by(email: session_params[:email])
