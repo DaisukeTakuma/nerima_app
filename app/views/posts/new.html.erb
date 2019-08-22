@@ -2,26 +2,8 @@
   <p></p>
   <h2>まるまるへの投稿</h2>
   <p></p>
-  <%= form_with(model: @posts, local:  true) do |f| %>
-    <div class="form-group">
-      <%= f.label :title, "タイトル" %>
-      <%= f.text_field :title, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :summary, "要約" %>
-      <%= f.text_area :summary, size: "20x5", class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :description, "本文" %>
-      <%= f.text_area :description, size: "20x10", class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :url, "参考URL" %>
-      <%= f.text_area :url, size: "20x1", class: "form-control" %>
-    </div>
-    <%= f.submit "投稿する", class: "btn btn-primary" %>
-  <% end %>
 </div>
+<%= render 'form', posts: @posts %>
 
 
 <!--undefined method `name' for #<Post:0x00007f9789ac7560>

@@ -2,23 +2,5 @@
   <p></p>
   <h2>まるまるへの投稿の編集</h2>
   <p></p>
-  <%= form_with(model: @posts, local:  true) do |f| %>
-    <div class="form-group" rows="1">
-      <label for="exampleFormControlTextarea1">タイトル</label>
-      <%= f.text_field :title, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <label for="exampleFormControlTextarea1">要約</label>
-      <%= f.text_area :summary, size: "20x5", class: "form-control", id: "exampleFormControlTextarea1" %>
-    </div>
-    <div class="form-group">
-      <label for="exampleFormControlTextarea1">本文</label>
-      <%= f.text_area :description, size: "20x10", class: "form-control", id: "exampleFormControlTextarea1" %>
-    </div>
-    <div class="form-group">
-      <label for="exampleFormControlTextarea1">参考URL:</label>
-      <%= f.text_area :url, size: "20x1", class: "form-control", id: "exampleFormControlTextarea1" %>
-    </div>
-    <%= f.submit "投稿する", class: "btn btn-primary" %>
-  <% end %>
-</div> 
+</div>
+<%= render 'form', posts: @posts %>
