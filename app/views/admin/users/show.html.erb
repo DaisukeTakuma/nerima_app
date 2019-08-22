@@ -14,7 +14,7 @@
           <div>
             <tr>
               <% @posts.each do |post| %>
-              <td><%= link_to "#{post.title}", post_path %></td> 
+              <td><%= link_to "#{post.title}", post_path(post.id) %></td> 
               <td>##</td> 
               <td><%= post.created_at %></td> 
               <% end %>
