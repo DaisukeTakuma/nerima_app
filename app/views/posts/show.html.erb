@@ -17,6 +17,10 @@
       <hr>
       <h3 class="card-title">記事詳細</h3>
       <%= @post.description %>
+      <% if @post.image.attached? %>
+        <h4 class="card-title">画像</h4>
+        <%= image_tag @post.image %>
+      <% end %>
       <hr>
       <h6 class="card-title">URL：<%= @post.url %></h6>
     </div>
