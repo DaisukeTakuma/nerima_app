@@ -3,6 +3,13 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   before_action :login_required
   protect_from_forgery with: :exception
+  before_action :set_search
+
+  #ヘッダーにつけるため、Appcontrollerに記述
+  def set_search
+    @q = Post.all.ransack(params[:q])
+    @posts = @q.result(distinct: true)
+  end
 
   private
   def current_user

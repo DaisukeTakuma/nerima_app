@@ -4,4 +4,6 @@ class Post < ApplicationRecord
   validates :category_name, presence: true
 
   belongs_to :user
+
+  scope :recent, -> { order(created_at: :desc) }
 end
