@@ -48,18 +48,36 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.new(post_params)
-
-    if @post.save!
-      redirect_to @post, notice: "「#{@post.title}」を投稿しました。"
-    else
-      render :new
+    params[:category_name].each do |cn1,cn2|
+      if cn2 == "1"
+        @post = current_user.posts.new(post_params)
+        @post.category_name = cn1
+        #if文で保存すると、複数回render、redirectしてしまうため使えない。
+        @post.save!
+        redirect_to @post, notice: "「#{@post.title}」を投稿しました。"
+      end
     end
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:title, :summary, :description, :url)
+    params.require(:post).permit(:title, :summary, :description, :category_name, :url)
   end
 end
+
+
+
+#def create
+#  @post = current_user.posts.new(post_params)
+#  @post.category_name.each do |cn1,cn2|
+#    if cn2 == "1"
+#      post = @post.category_name(cn1)
+#      if post.save!
+#        redirect_to @post, notice: "「#{@post.title}」を投稿しました。"
+#      end
+#    else
+#      render :new
+#    end
+#  end
+#end

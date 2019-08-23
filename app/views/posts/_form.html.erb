@@ -13,6 +13,20 @@
       <%= f.text_area :description, size: "20x10", class: "form-control" %>
     </div>
     <div class="form-group">
+      <p>カテゴリー</p>
+      <%= check_box "category_name", "おくやみ" %>おくやみ
+      <%= check_box "category_name", "福祉" %>福祉
+      <!--<%= f.check_box :category_name %>
+      <%= f.label :category_name, "福祉" %>-->
+      <!--<% category = %w(おくやみ 福祉) %>
+      <%= f.collection_check_boxes(:category_name, Post.all, :id, :category_name) do |b| %>
+      <%= b.label { b.check_box + b.text } %>
+      <% end %>-->
+      <!--おそらくif文でチェックが一つでも入ったらグレーアウトする処理を書く必要がある。
+      <%= f.label :category_name, "カテゴリー" %>
+      <%= f.check_box :category_name, class: "form-check" %>-->
+    </div>
+    <div class="form-group">
       <%= f.label :url, "参考URL" %>
       <%= f.text_area :url, size: "20x1", class: "form-control" %>
     </div>
