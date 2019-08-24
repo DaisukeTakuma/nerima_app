@@ -2,6 +2,8 @@ class SessionsController < ApplicationController
   skip_before_action :login_required
 
   def new
+    
+  end
 
   def show
     @q = current_user.posts.ransack(params[:q])

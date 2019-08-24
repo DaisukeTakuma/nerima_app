@@ -7,3 +7,8 @@ class CategoriesController < ApplicationController
     end
   end
 end
+
+def show
+  @q = Post.find_by(category_name: params[:category_name]).ransack(params[:q])
+  @post = @q.result(distinct: true).page(params[:page])
+end
