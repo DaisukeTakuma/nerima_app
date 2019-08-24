@@ -1,11 +1,9 @@
 class PostsController < ApplicationController
   def index
-    #@posts = Post.all
   end
 
   def show
     @post = Post.find(params[:id])
-    #@post = current_user.posts.find(params[:id])以前かいたやつ
   end
 
   def new
@@ -18,13 +16,6 @@ class PostsController < ApplicationController
     else
       redirect_to root_path, notice: '権限がありません'
     end
-    #if current_user.admin? then
-    #  @posts = Post.find(params[:id])
-    #elsif current_user && current_user.posts.find_by(params[:id]).empty? then
-    #  @posts = current_user.posts.find(params[:id])
-    #else
-    #  redirect_to root_path, notice: '権限がありません'
-    #end
   end
 
   def update
@@ -48,6 +39,8 @@ class PostsController < ApplicationController
   end
 
   def create
+    #:category_nameは、カテゴリ名と0か1がペアの配列。
+    #category_nameカラムに、配列に代わって、カテゴリ名を上書き登録する
     params[:category_name].each do |cn1,cn2|
       if cn2 == "1"
         @post = current_user.posts.new(post_params)
@@ -65,19 +58,3 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :summary, :description, :category_name, :image, :url)
   end
 end
-
-
-
-#def create
-#  @post = current_user.posts.new(post_params)
-#  @post.category_name.each do |cn1,cn2|
-#    if cn2 == "1"
-#      post = @post.category_name(cn1)
-#      if post.save!
-#        redirect_to @post, notice: "「#{@post.title}」を投稿しました。"
-#      end
-#    else
-#      render :new
-#    end
-#  end
-#end

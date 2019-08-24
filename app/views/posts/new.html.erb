@@ -1,20 +1,6 @@
 <div class="container">
-  <p></p>
-  <h2>まるまるへの投稿</h2>
-  <p></p>
+  <br>
+  <h2>新規投稿</h2>
+  <br>
 </div>
 <%= render 'form', posts: @posts %>
-
-
-<!--undefined method `name' for #<Post:0x00007f9789ac7560>
-Extracted source (around line #36):
-
-  def create
-    post = Post.new(post_params)
-    post.save!
-    redirect_to root_path, notice: "「#{post.title}」を投稿しました。"
-  end
-  投稿しようとするとこのようなエラーがでた
-  nameメソッドがないよとのことだが、nameメソッドをしようしていない。
-  おそらく、投稿とユーザーが紐づいていないため。
--->

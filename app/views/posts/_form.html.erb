@@ -14,10 +14,10 @@
     </div>
     <div class="form-group">
       <p>カテゴリー</p>
-      <% category = %w(結婚 出産 進学 医療 福祉 仕事 就職 退職 災害 おくやみ) %>
-      <% category.each do |p| %>
-        <%= check_box "category_name", "#{p}" %>
-        <%= "#{p}" %>
+      <% categories = %w(結婚 出産 進学 医療 福祉 仕事 就職 退職 災害 おくやみ) %>
+      <% categories.each do |category| %>
+        <%= check_box "category_name", "#{category}" %>
+        <%= "#{category}" %>
       <% end %>
       <!--javascriptで、チェックが一つでも入ったらグレーアウトする処理を書く必要がある。
       disabled: "disabled"属性

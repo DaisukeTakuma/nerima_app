@@ -1,66 +1,41 @@
-<p></p>
+<br><!--完了-->
 <div class="container text-center">
-  <button type="button" class="btn btn-secondary btn-lg">結婚</button>
-  <button type="button" class="btn btn-success  btn-lg">出産</button>
-  <button type="button" class="btn btn-danger btn-lg">進学</button>
-  <button type="button" class="btn btn-warning btn-lg">医療</button>
-  <button type="button" class="btn btn-info btn-lg"><%= link_to "福祉", "/categories/index/福祉" %></button>
-  <button type="button" class="btn btn-light btn-lg">仕事</button>
-  <button type="button" class="btn btn-dark btn-lg">就職</button>
-  <button type="button" class="btn btn-secondary btn-lg">災害</button>
-  <button type="button" class="btn btn-success btn-lg">退職</button>
-  <button type="button" class="btn btn-danger btn-lg"><%= link_to "おくやみ", "/categories/index/おくやみ" %></button>
+  <% categories = [["結婚","btn btn-secondary btn-lg"],
+                    ["出産","btn btn-success btn-lg"],
+                    ["進学","btn btn-danger btn-lg"],
+                    ["医療","btn btn-warning btn-lg"],
+                    ["福祉","btn btn-info btn-lg"],
+                    ["仕事","btn btn-secondary btn-lg"],
+                    ["就職","btn btn-dark btn-lg"],
+                    ["退職","btn btn-success btn-lg"],
+                    ["災害","btn btn-secondary btn-lg"],
+                    ["おくやみ","btn btn-danger btn-lg"]
+                  ] %>
+  <% categories.each do | category,button_color | %>
+    <button type="button" class="<%= button_color %>">
+      <%= link_to "#{category}", "/categories/index/#{category}", style: "color:white" %>
+    </button>
+  <% end %>
 </div>
-<p></p>
+<br>
 <div class="container">
   <h2>全ての記事</h2>
-  <%= paginate @posts %>
-  <%= page_entries_info @posts,entry_name: "投稿" %>
-</div>
-<div class="container text-center">
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">新着</a>
-      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">週間</a>
-      <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">月間</a>
+      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" role="tab" aria-controls="nav-home" aria-selected="true">新着</a>
     </div>
   </nav>
-  <div class="row">
-    <div class="col-md-3">
-      <table class="table table-striped">
-        <thead>
-        <table>
-          <tr>
-            <th>記事タイトル</th>
-            <th>カテゴリー</th>
-            <th>更新日時</th>
-          </tr>
-          </table>
-        </thead>
-      </table>
-    </div>
-  </div>
-  <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-      <ul class="list-group list-group-flush">
-        <% @posts.each do |post| %>
-          <li class="list-group-item"><%= link_to post.title, post_path(post) %></li>
-          <!--<li class="list-group-item"><%= link_to post.title, post_path(post) %></li>-->
-        <% end %>
-      </ul>
-    </div>
-  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
     <ul class="list-group list-group-flush">
+        <br>
+        <strong>記事タイトル</strong>
+        <br>
       <% @posts.each do |post| %>
         <li class="list-group-item"><%= link_to post.title, post_path(post) %></li>
       <% end %>
     </ul>
-  </div>
-  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-    <ul class="list-group list-group-flush">
-    <% @posts.each do |post| %>
-      <li class="list-group-item"><%= link_to post.title, post_path(post) %></li>
-    <% end %>
-    </ul>
+  <div class="container">
+    <br>
+    <%= paginate @posts %>
+    <%= page_entries_info @posts, entry_name: "投稿" %>
   </div>
 </div>
