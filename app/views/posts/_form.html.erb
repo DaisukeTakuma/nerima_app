@@ -6,34 +6,33 @@
     </div>
     <div class="form-group">
       <%= f.label :summary, "要約" %>
-      <%= f.text_area :summary, size: "20x5", class: "form-control" %>
+      <%= f.text_area :summary, size: "1x5", class: "form-control" %>
     </div>
     <div class="form-group">
       <%= f.label :description, "本文" %>
-      <%= f.text_area :description, size: "20x10", class: "form-control" %>
+      <%= f.text_area :description, size: "1x10", class: "form-control" %>
     </div>
     <div class="form-group">
       <p>カテゴリー</p>
-      <%= check_box "category_name", "おくやみ" %>おくやみ
-      <%= check_box "category_name", "福祉" %>福祉
-      <!--<%= f.check_box :category_name %>
-      <%= f.label :category_name, "福祉" %>-->
-      <!--<% category = %w(おくやみ 福祉) %>
-      <%= f.collection_check_boxes(:category_name, Post.all, :id, :category_name) do |b| %>
-      <%= b.label { b.check_box + b.text } %>
-      <% end %>-->
-      <!--おそらくif文でチェックが一つでも入ったらグレーアウトする処理を書く必要がある。
-      <%= f.label :category_name, "カテゴリー" %>
-      <%= f.check_box :category_name, class: "form-check" %>-->
+      <% category = %w(結婚 出産 進学 医療 福祉 仕事 就職 退職 災害 おくやみ) %>
+      <% category.each do |p| %>
+        <%= check_box "category_name", "#{p}" %>
+        <%= "#{p}" %>
+      <% end %>
+      <!--javascriptで、チェックが一つでも入ったらグレーアウトする処理を書く必要がある。
+      disabled: "disabled"属性
+      https://qiita.com/isaaac/items/e6ffc9b817bad749a525-->
     </div>
     <div class="form-group">
       <%= f.label :image, "画像ファイル" %>
-      <%= f.file_field :image, size: "20x1", class: "form-control" %>
+      <%= f.file_field :image, size: "1x1", class: "form-control" %>
     </div>
     <div class="form-group">
       <%= f.label :url, "参考URL" %>
-      <%= f.text_area :url, size: "20x1", class: "form-control" %>
+      <%= f.text_area :url, size: "1x1", class: "form-control" %>
     </div>
-    <%= f.submit "投稿する", class: "btn btn-primary" %>
+    <div class="form-group">
+      <%= f.submit "投稿する", class: "btn btn-primary" %>
+    </div>
   <% end %>
 </div>
