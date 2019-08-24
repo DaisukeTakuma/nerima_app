@@ -18,10 +18,14 @@
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
       <ul class="list-group list-group-flush">
         <% @posts.each do |post| %>
-          <li class="list-group-item"><%= link_to post.title, post_path(post.id) %></li>
-          <!--post_path(post)のパターンと、post_path(post.id)のパターンどちらでもいけるが簡単な方が良い？？-->
-          <!--<li class="list-group-item"><%= link_to post.title, post_path(post) %></li>-->
+          <li class="list-group-item"><%= link_to post.title, post_path(post) %></li>
         <% end %>
       </ul>
     </div>
-        </div>
+  </div>
+    <div class="container">
+    <br>
+    <%= paginate @posts %>
+    <%= page_entries_info @posts, entry_name: "投稿" %>
+  </div>
+</div>

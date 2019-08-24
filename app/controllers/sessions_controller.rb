@@ -2,9 +2,10 @@ class SessionsController < ApplicationController
   skip_before_action :login_required
 
   def new
-  end
+
   def show
-    @posts = current_user.posts
+    @q = current_user.posts.ransack(params[:q])
+    @posts = @q.result(distinct: true).page(params[:page])
   end
 
   def create

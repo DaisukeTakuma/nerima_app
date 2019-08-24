@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :set_search
 
-  #ヘッダーにつけるため、Appcontrollerに記述
   def set_search
     @q = Post.all.ransack(params[:q])
     @posts = @q.result(distinct: true).page(params[:page])
