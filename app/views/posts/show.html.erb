@@ -1,14 +1,18 @@
-<div class="container">
+<div class="container"><!--完了-->
 <br>
   <div class="card">
     <div class="card-header">
-      <h4><%= link_to 'ユーザー名', root_path, class: "text-right" %></h4>
+      <!--ユーザーごとにユーザー名を表示させたい。
+      最終的に、未ログインユーザーでも閲覧できるようにする。
+      その際にコントローラーに記述が必要。リンク先も変更が必要か？sessions_showなので未ログインユーザーは飛べない？
+      -->
+      <h4><%= link_to 'ユーザー名', sessions_show_path, class: "text-right" %></h4>
       <h2 class=""><%= @post.title %></h2>
-        <div class="pull-right">
-          <%= link_to 'Home', root_path %>
-          <%= link_to '編集', edit_post_path %>
-          <%= link_to '削除', post_path, method: "delete", data: { confirm: "Are you sure?" } %>
-        </div>
+      <div class="pull-right">
+        <%= link_to 'Home', root_path %>
+        <%= link_to '編集', edit_post_path %>
+        <%= link_to '削除', post_path, method: "delete", data: { confirm: "Are you sure?" } %>
+      </div>
     </div>
     <div class="card-body">
       <h3 class="card-title">要約</h3>
@@ -16,12 +20,14 @@
       <hr>
       <h3 class="card-title">記事詳細</h3>
       <%= @post.description %>
+      <hr>
       <% if @post.image.attached? %>
         <h4 class="card-title">画像</h4>
+        <!--画像がはみ出てしまう-->
         <%= image_tag @post.image %>
       <% end %>
       <hr>
-      <h6 class="card-title">URL：<%= @post.url %></h6>
+      <h6 class="card-title">参考URL：<%= @post.url %></h6>
     </div>
   </div>
 </div>
