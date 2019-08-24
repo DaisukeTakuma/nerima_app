@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   #ヘッダーにつけるため、Appcontrollerに記述
   def set_search
     @q = Post.all.ransack(params[:q])
-    @posts = @q.result(distinct: true).recent
+    @posts = @q.result(distinct: true).page(params[:page])
   end
 
   private
