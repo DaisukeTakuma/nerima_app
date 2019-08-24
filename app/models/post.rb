@@ -5,6 +5,6 @@ class Post < ApplicationRecord
   validates :category_name, presence: true
 
   belongs_to :user
-
+  paginates_per 10
   scope :recent, -> { order(created_at: :desc) }
 end
