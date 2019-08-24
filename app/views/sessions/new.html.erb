@@ -4,12 +4,12 @@
   <!--もう少し|f|の動きを理解する必要あり。特にf.labelの動き。ただのラベルなのにerbとする必要があるのか。-->
   <%= form_with(scope: :session, local:true) do |f| %>
   <div class="form-group">
-    <%= f.label :Email_address %>
+    <%= f.label :email %>
     <!--この：emailはDBのカラムと対応している。-->
     <%= f.email_field :email, class: "form-control", placeholder: "sample@example.com" %>
   </div>
   <div class="form-group">
-    <%= f.label :Password %>
+    <%= f.label :password %>
     <%= f.password_field :password, class: "form-control", placeholder: "password" %>
   </div>
   <!--HTMLのform要素をsubmitするとpostが送られる
