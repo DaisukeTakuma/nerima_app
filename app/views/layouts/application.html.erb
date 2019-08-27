@@ -31,7 +31,7 @@
                 <%= link_to "ユーザー一覧", admin_users_path, class: "nav-link" %>
                 <%= link_to "新規ユーザー登録", new_admin_user_path, class: "nav-link" %>
               <% end %>
-              <%= link_to "ログアウト", logout_path, method: :delete, class: "nav-link" %>
+              <%= link_to "ログアウト", logout_path, method: :delete, data: { confirm: "ログアウトしますか?" }, class: "nav-link" %>
             <% else %>
               <%= link_to "ログイン", sessions_new_path, class: "nav-link" %>
               <%= link_to "新規ユーザー登録", new_admin_user_path, class: "nav-link" %>
