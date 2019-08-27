@@ -12,8 +12,9 @@ class PostsController < ApplicationController
   end
 
   def edit
-    if current_user.admin?
-      @posts = Post.find(params[:id])
+    post = Post.find(params[:id])
+    if current_user.admin? || current_user.id == post.user_id
+      @posts = post
     else
       redirect_to root_path, notice: '権限がありません'
     end
@@ -30,8 +31,8 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    if current_user.admin?
-      post = Post.find(params[:id])
+    post = Post.find(params[:id])
+    if current_user.admin? || current_user.id == post.user_id
       post.destroy
       redirect_to root_path, notice: 'Success!'
     else
