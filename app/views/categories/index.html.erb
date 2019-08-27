@@ -1,16 +1,52 @@
 <div class="container"><!--完了-->
-<h2><%= "#{@category_name.category_name}の一覧" %></h2>
-    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-      <ul class="list-group list-group-flush">
-        <% @posts.each do |post| %>
-          <li class="list-group-item"><%= link_to "#{post.title}", post_path(post) %></li>
-          <!--<li class="list-group-item"><%= link_to post.title, post_path(post) %></li>-->
-        <% end %>
-      </ul>
+  <div class="row">
+    <div class="col-lg-10 offset-lg-1">
+      <br>
+      <h2><%= "#{@category_name.category_name}の記事一覧" %></h2>
+      <hr>
     </div>
-    <div class="container">
-    <br>
-    <%= paginate @posts %>
-    <%= page_entries_info @posts, entry_name: "投稿" %>
+  </div>
+  <div class="row">
+    <div class="col-lg-4 offset-lg-1">
+      <strong>記事タイトル</strong>
+      <hr>
+    </div>
+    <div class="col-lg-3">
+      <strong>投稿者</strong>
+      <hr>
+    </div>
+    <div class="col-lg-3">
+      <strong>更新日時</strong>
+      <hr>
+    </div>
+  </div>
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+    <ul class="list-group list-group-flush">
+      <div class="row">
+        <% @posts.each do |post| %>
+          <% user = User.find_by(id: post.user_id) %>
+          <div class="col-lg-4 offset-lg-1">
+            <%= link_to post.title, post_path(post) %>
+            <hr>
+          </div>
+          <div class="col-lg-3">
+            <%= link_to user.name, root_path %>
+            <hr>
+          </div>
+          <div class="col-lg-3">
+            <%= l(post.updated_at, format: :long) %>
+            <hr>
+          </div>
+        <% end %>
+      </div>
+    </ul>
+  </div>
+  <div class="row">
+    <div class="col-lg-10 offset-lg-1">
+      <br>
+      <%= paginate @posts %>
+      <%= page_entries_info @posts, entry_name: "投稿" %>
+    </div>
   </div>
 </div>
+

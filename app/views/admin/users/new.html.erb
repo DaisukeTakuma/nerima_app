@@ -1,6 +1,9 @@
 <div class="container">
-  <p></p>
+  <div class="row">
+    <div class="col-lg-10 offset-lg-1">
+    <br>
   <h2>ユーザー登録</h2>
+  <hr>
   <%= form_with(model: [:admin, @user], local: true) do |f| %>
     <div class="form-group">
       <%= f.label :name, "ユーザー名" %>
@@ -24,4 +27,6 @@
     </div>
     <%= f.submit "登録する", class: "btn btn-primary" %>
   <% end %>
+    </div>
+  </div>
 </div>

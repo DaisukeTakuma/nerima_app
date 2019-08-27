@@ -1,6 +1,9 @@
 <div class="container">
-  <p></p>
+  <div class="row">
+    <div class="col-lg-10 offset-lg-1">
+  <br>
   <h2>ユーザーログイン</h2>
+  <hr>
   <!--もう少し|f|の動きを理解する必要あり。特にf.labelの動き。ただのラベルなのにerbとする必要があるのか。-->
   <%= form_with(scope: :session, local:true) do |f| %>
     <div class="form-group">
@@ -14,4 +17,6 @@
     </div>
     <%= f.submit "ログインする" ,class: "btn btn-primary" %>
   <% end %>
+    </div>
+  </div>
 </div>

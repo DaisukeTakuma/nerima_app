@@ -1,5 +1,7 @@
 <br><!--完了-->
 <div class="container text-center">
+  <div class="row">
+    <div class="col-lg-10 offset-lg-1">
   <% categories = [["結婚","btn btn-secondary btn-lg"],
                     ["出産","btn btn-success btn-lg"],
                     ["進学","btn btn-danger btn-lg"],
@@ -16,26 +18,64 @@
       <%= link_to "#{category}", "/categories/index/#{category}", style: "color:white" %>
     </button>
   <% end %>
-</div>
-<br>
-<div class="container">
-  <h2>全ての記事</h2>
-  <nav>
-    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" role="tab" aria-controls="nav-home" aria-selected="true">新着</a>
     </div>
-  </nav>
-    <ul class="list-group list-group-flush">
-        <br>
-        <strong>記事タイトル</strong>
-        <br>
-      <% @posts.each do |post| %>
-        <li class="list-group-item"><%= link_to post.title, post_path(post) %></li>
-      <% end %>
-    </ul>
-  <div class="container">
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 offset-lg-1">
+      <br>
+      <h2>全ての記事</h2>
+      <hr>
+    </div>
+  </div>
+  <div class="row">
     <br>
-    <%= paginate @posts %>
-    <%= page_entries_info @posts, entry_name: "投稿" %>
+    <div class="col-lg-4 offset-lg-1">
+      <strong>記事タイトル</strong>
+      <hr>
+    </div>
+    <div class="col-lg-2">
+      <strong>カテゴリ</strong>
+      <hr>
+    </div>
+    <div class="col-lg-2">
+      <strong>投稿者</strong>
+      <hr>
+    </div>
+    <div class="col-lg-2">
+      <strong>更新日時</strong>
+      <hr>
+    </div>
+  </div>
+      <ul class="list-group list-group-flush">
+        <% @posts.each do |post| %>
+          <% user = User.find_by(id: post.user_id) %>
+          <div class="row">
+            <div class="col-lg-4 offset-lg-1">
+              <%= link_to post.title, post_path(post) %>
+              <hr>
+            </div>
+            <div class="col-lg-2">
+              <%= post.category_name %>
+              <hr>
+            </div>
+            <div class="col-lg-2">
+              <%= link_to user.name, root_path %>
+              <hr>
+            </div>
+            <div class="col-lg-2">
+              <%= l(post.updated_at, format: :long) %>
+              <hr>
+            </div>
+          </div>
+        <% end %>
+      </ul>
+  <div class="row">
+    <div class="col-lg-10 offset-lg-1">
+      <br>
+      <%= paginate @posts %>
+      <%= page_entries_info @posts, entry_name: "投稿" %>
+    </div>
   </div>
 </div>
