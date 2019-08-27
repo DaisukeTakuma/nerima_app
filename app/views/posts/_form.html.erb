@@ -14,14 +14,15 @@
     </div>
     <div class="form-group">
       <p>カテゴリー</p>
-      <% categories = %w(結婚 出産 進学 医療 福祉 仕事 就職 退職 災害 おくやみ) %>
-      <% categories.each do |category| %>
-        <%= check_box "category_name", "#{category}" %>
-        <%= "#{category}" %>
+      <% i = 0 %>
+      <% while i < 10 do %>
+        <% categories = %w(結婚 出産 進学 医療 福祉 仕事 就職 退職 災害 おくやみ) %>
+        <% categories.each do |category| %>
+          <%= check_box "category_name", "#{category}", id: "category#{i}", onclick: "categoryflg#{i}(checked)" %>
+          <%= "#{category}" %>
+          <% i += 1 %>
+        <% end %>
       <% end %>
-      <!--javascriptで、チェックが一つでも入ったらグレーアウトする処理を書く必要がある。
-      disabled: "disabled"属性
-      https://qiita.com/isaaac/items/e6ffc9b817bad749a525-->
     </div>
     <div class="form-group">
       <%= f.label :image, "画像ファイル" %>
