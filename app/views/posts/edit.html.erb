@@ -1,6 +1,8 @@
-<div class="container"><!--完了-->
+<br>
+<div class="container bg-white"><!--完了-->
   <br>
   <h2><%= "#{@posts.category_name}カテゴリーへの投稿の編集" %></h2>
   <br>
+  <%= render 'form', posts: @posts %>
 </div>
-<%= render 'form', posts: @posts %>
+<br>
