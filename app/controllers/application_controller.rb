@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   #skip_before_filter :verify_authenticity_token
   helper_method :current_user
-  before_action :login_required
+  #before_action :login_required
   protect_from_forgery with: :exception
   before_action :set_search
 
@@ -14,9 +14,9 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
   end
-  def login_required
-    redirect_to login_url unless current_user
-  end
+  #def login_required
+  #  redirect_to login_url unless current_user
+  #end
 end
 
 #protect_from_forgery with: :exceptionを追記したら下記が発生

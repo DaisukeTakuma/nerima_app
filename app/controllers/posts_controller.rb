@@ -12,9 +12,13 @@ class PostsController < ApplicationController
   end
 
   def edit
-    post = Post.find(params[:id])
-    if current_user.admin? || current_user.id == post.user_id
-      @posts = post
+    unless current_user.blank? then
+      post = Post.find(params[:id])
+      if current_user.admin? || current_user.id == post.user_id
+        @posts = post
+      else
+        redirect_to root_path, notice: '権限がありません'
+      end
     else
       redirect_to root_path, notice: '権限がありません'
     end
@@ -31,10 +35,14 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    post = Post.find(params[:id])
-    if current_user.admin? || current_user.id == post.user_id
-      post.destroy
-      redirect_to root_path, notice: 'Success!'
+    unless current_user.blank? then
+      post = Post.find(params[:id])
+      if current_user.admin? || current_user.id == post.user_id
+        post.destroy
+        redirect_to root_path, notice: 'Success!'
+      else
+        redirect_to root_path, notice: '権限がありません'
+      end
     else
       redirect_to root_path, notice: '権限がありません'
     end
