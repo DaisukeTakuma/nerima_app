@@ -2,32 +2,32 @@
 <div class="container bg-white">
   <div class="row">
     <div class="col-lg-10 offset-lg-1">
-    <br>
-  <h2>ユーザー登録</h2>
-  <hr>
-  <%= form_with(model: [:admin, @user], local: true) do |f| %>
-    <div class="form-group">
-      <%= f.label :name, "ユーザー名" %>
-      <%= f.text_field :name, class: "form-control", placeholder: "test_user" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :email, "メールアドレス" %>
-      <%= f.email_field :email, class: "form-control", placeholder: "sample@example.com" %>
-    </div>
-    <div class="form-group">
-      <%= f.check_box :admin %>
-      <%= f.label :admin, "管理者権限" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :password, "パスワード" %>
-      <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :Password_confirmation, "パスワード(確認)" %>
-      <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password" %>
-    </div>
-    <%= f.submit "登録する", class: "btn btn-primary" %>
-  <% end %>
+      <br>
+      <h2>ユーザー登録</h2>
+      <hr>
+      <%= form_with(model: [:admin, @user], local: true) do |f| %>
+        <div class="form-group">
+          <%= f.label :name, "ユーザー名" %>
+          <%= f.text_field :name, class: "form-control", placeholder: "test_user" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :email, "メールアドレス" %>
+          <%= f.email_field :email, class: "form-control", placeholder: "sample@example.com" %>
+        </div>
+        <div class="form-group">
+          <%= f.check_box :admin %>
+          <%= f.label :admin, "管理者権限" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password, "パスワード" %>
+          <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :Password_confirmation, "パスワード(確認)" %>
+          <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password" %>
+        </div>
+        <%= f.submit "登録する", class: "btn btn-primary" %>
+      <% end %>
     </div>
   </div>
   <br>

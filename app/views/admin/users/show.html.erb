@@ -26,32 +26,32 @@
       <hr>
     </div>
   </div>
-      <ul class="list-group list-group-flush">
-        <% @posts.each do |post| %>
-          <div class="row">
-            <div class="col-lg-2 offset-lg-1">
-              <%= post.category_name %>
-              <hr>
-            </div>
-            <div class="col-lg-4">
-              <%= link_to post.title, post_path(post) %>
-              <hr>
-            </div>
-            <div class="col-lg-1">
-              <%= link_to '編集', edit_post_path(post) %>
-              <hr>
-            </div>
-            <div class="col-lg-1">
-              <%= link_to '削除', post_path(post), method: "delete", data: { confirm: "投稿を削除しますか?" } %>
-              <hr>
-            </div>
-            <div class="col-lg-2">
-              <%= l(post.updated_at, format: :long) %>
-              <hr>
-            </div>
-          </div>
-        <% end %>
-      </ul>
+  <ul class="list-group list-group-flush">
+    <% @posts.each do |post| %>
+      <div class="row">
+        <div class="col-lg-2 offset-lg-1">
+          <%= post.category_name %>
+          <hr>
+        </div>
+        <div class="col-lg-4">
+          <%= link_to post.title, post_path(post) %>
+          <hr>
+        </div>
+        <div class="col-lg-1">
+          <%= link_to '編集', edit_post_path(post) %>
+          <hr>
+        </div>
+        <div class="col-lg-1">
+          <%= link_to '削除', post_path(post), method: "delete", data: { confirm: "投稿を削除しますか?" } %>
+          <hr>
+        </div>
+        <div class="col-lg-2">
+          <%= l(post.updated_at, format: :long) %>
+          <hr>
+        </div>
+      </div>
+    <% end %>
+  </ul>
   <div class="row">
     <div class="col-lg-11 offset-lg-1">
       <br>

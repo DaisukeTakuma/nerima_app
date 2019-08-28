@@ -21,31 +21,31 @@
       <hr>
     </div>
   </div>
-      <ul class="list-group list-group-flush">
-        <% @users.each do |user| %>
-        <div class="row">
-          <div class="col-lg-3 offset-lg-1">
-            <%= link_to "#{user.name}", admin_user_path(user.id) %>
-            <hr>
-          </div>
-          <div class="col-lg-2">
-            <% if user.admin?%>
-              <%= "管理者ユーザー" %>
-            <% else %>
-              <%= "一般ユーザー" %>
-            <% end %>
-            <hr>
-          </div>
-          <div class="col-lg-1">
-            <%= link_to "編集", edit_admin_user_path(user.id) %>
-            <hr>
-          </div>
-          <div class="col-lg-1">
-            <%= link_to '削除', [:admin, user], method: :delete, data: { confirm: "#{user.name}さんを削除しますか?" } %>
-            <hr>
-          </div>
+  <ul class="list-group list-group-flush">
+    <% @users.each do |user| %>
+      <div class="row">
+        <div class="col-lg-3 offset-lg-1">
+          <%= link_to "#{user.name}", admin_user_path(user.id) %>
+          <hr>
         </div>
-        <% end %>
-      </ul>
+        <div class="col-lg-2">
+          <% if user.admin?%>
+            <%= "管理者ユーザー" %>
+          <% else %>
+            <%= "一般ユーザー" %>
+          <% end %>
+          <hr>
+        </div>
+        <div class="col-lg-1">
+          <%= link_to "編集", edit_admin_user_path(user.id) %>
+          <hr>
+        </div>
+        <div class="col-lg-1">
+          <%= link_to '削除', [:admin, user], method: :delete, data: { confirm: "#{user.name}さんを削除しますか?" } %>
+          <hr>
+        </div>
+      </div>
+    <% end %>
+  </ul>
 </div>
 <br>

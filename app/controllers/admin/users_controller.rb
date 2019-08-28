@@ -1,6 +1,5 @@
 class Admin::UsersController < ApplicationController
-  #skip_before_action :login_required
-  #before_action :require_admin
+
   def index
     @users = User.all
   end
@@ -38,11 +37,6 @@ class Admin::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :admin, :password, :password_confirmation)
   end
-  #下記のpassword_confirmationはDBテーブルに存在しない。
-  #  private
-  #def user_params
-  #  params.require(:user).permit(:name, :email, :admin, :password, :password_confirmation)
-  #end
   
   def require_admin
     redirect_to root_url unless current_user.admin?

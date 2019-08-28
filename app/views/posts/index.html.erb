@@ -1,24 +1,24 @@
-<br><!--完了-->
+<br>
 <div class="container bg-white">
   <div class="row text-center">
     <div class="col-lg-10 offset-lg-1">
-        <br>
-  <% categories = [["結婚","btn btn-secondary btn-lg"],
-                    ["出産","btn btn-success btn-lg"],
-                    ["進学","btn btn-danger btn-lg"],
-                    ["医療","btn btn-warning btn-lg"],
-                    ["福祉","btn btn-info btn-lg"],
-                    ["仕事","btn btn-secondary btn-lg"],
-                    ["就職","btn btn-dark btn-lg"],
-                    ["退職","btn btn-success btn-lg"],
-                    ["災害","btn btn-secondary btn-lg"],
-                    ["おくやみ","btn btn-danger btn-lg"]
-                  ] %>
-  <% categories.each do | category,button_color | %>
-    <button type="button" class="<%= button_color %>">
-      <%= link_to "#{category}", "/categories/index/#{category}", style: "color:white" %>
-    </button>
-  <% end %>
+      <br>
+      <% categories = [["結婚","btn btn-secondary btn-lg"],
+                        ["出産","btn btn-success btn-lg"],
+                        ["進学","btn btn-danger btn-lg"],
+                        ["医療","btn btn-warning btn-lg"],
+                        ["福祉","btn btn-info btn-lg"],
+                        ["仕事","btn btn-secondary btn-lg"],
+                        ["就職","btn btn-dark btn-lg"],
+                        ["退職","btn btn-success btn-lg"],
+                        ["災害","btn btn-secondary btn-lg"],
+                        ["おくやみ","btn btn-danger btn-lg"]
+                      ] %>
+      <% categories.each do | category,button_color | %>
+        <button type="button" class="<%= button_color %>">
+          <%= link_to "#{category}", "/categories/index/#{category}", style: "color:white" %>
+        </button>
+      <% end %>
     </div>
   </div>
   <div class="row">
@@ -47,29 +47,29 @@
       <hr>
     </div>
   </div>
-      <ul class="list-group list-group-flush">
-        <% @posts.each do |post| %>
-          <% user = User.find_by(id: post.user_id) %>
-          <div class="row">
-            <div class="col-lg-2 offset-lg-1">
-              <%= post.category_name %>
-              <hr>
-            </div>
-            <div class="col-lg-4 ">
-              <%= link_to post.title, post_path(post) %>
-              <hr>
-            </div>
-            <div class="col-lg-2">
-              <%= link_to user.name, admin_user_path(user) %>
-              <hr>
-            </div>
-            <div class="col-lg-2">
-              <%= l(post.updated_at, format: :long) %>
-              <hr>
-            </div>
-          </div>
-        <% end %>
-      </ul>
+  <ul class="list-group list-group-flush">
+    <% @posts.each do |post| %>
+      <% user = User.find_by(id: post.user_id) %>
+      <div class="row">
+        <div class="col-lg-2 offset-lg-1">
+          <%= post.category_name %>
+          <hr>
+        </div>
+        <div class="col-lg-4">
+          <%= link_to post.title, post_path(post) %>
+          <hr>
+        </div>
+        <div class="col-lg-2">
+          <%= link_to user.name, admin_user_path(user) %>
+          <hr>
+        </div>
+        <div class="col-lg-2">
+          <%= l(post.updated_at, format: :long) %>
+          <hr>
+        </div>
+      </div>
+    <% end %>
+  </ul>
   <div class="row">
     <div class="col-lg-10 offset-lg-1">
       <br>
