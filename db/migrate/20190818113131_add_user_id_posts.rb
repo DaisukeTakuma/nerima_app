@@ -5,6 +5,6 @@ class AddUserIdPosts < ActiveRecord::Migration[5.2]
   end
 
   def down
-    remove_reference :posts, :users, index: true, foreign_key: true
+    remove_reference :posts, :user, index: true
   end
 end
