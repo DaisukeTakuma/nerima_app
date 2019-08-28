@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-  skip_before_action :login_required
+  #skip_before_action :login_required
   #before_action :require_admin
   def index
     @users = User.all

@@ -16,10 +16,10 @@
     </div>
     <div class="card-body">
       <h3 class="card-title">要約</h3>
-      <%= @post.summary %>
+      <%= simple_format(@post.summary, {}, sanitize: false) %>
       <hr>
       <h3 class="card-title">記事詳細</h3>
-      <%= @post.description %>
+      <%= simple_format(@post.description, {}, sanitize: false) %>
       <hr>
       <% if @post.image.attached? %>
         <h4 class="card-title">画像</h4>
@@ -27,7 +27,8 @@
         <%= image_tag @post.image %>
       <% end %>
       <hr>
-      <h6 class="card-title">参考URL：<%= @post.url %></h6>
+      <h6 class="card-title">参考URL</h6>
+      <%= auto_link(@post.url, html: { :target => '_blank' }) %>
     </div>
   </div>
 </div>
