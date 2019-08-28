@@ -6,9 +6,9 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
-    @posts = Post.where(user_id: params[:id])
-    #whereはインスタンスが生成されない。そのため、viewでレンダリングされない。変数に入れて使う際は、参照という形で使用する。
-    #@user = User.find(params[:id])もしかしたら必要になる？記載したいとが不明。
+    @user = User.find(params[:id])
+    @q = Post.where(user_id: params[:id]).ransack(params[:q])
+    @posts = @q.result(distinct: true).page(params[:page]).recent
   end
 
   def new

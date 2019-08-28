@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
 
   def show
     @q = current_user.posts.ransack(params[:q])
-    @posts = @q.result(distinct: true).page(params[:page])
+    @posts = @q.result(distinct: true).page(params[:page]).recent
   end
 
   def create
