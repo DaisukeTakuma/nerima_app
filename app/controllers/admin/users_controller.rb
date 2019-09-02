@@ -1,4 +1,5 @@
 class Admin::UsersController < ApplicationController
+#before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :following, :followers]
 
   def index
     @users = User.all
@@ -8,6 +9,12 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     @q = Post.where(user_id: params[:id]).ransack(params[:q])
     @posts = @q.result(distinct: true).page(params[:page]).recent
+
+    unless @current_user.blank? then
+      @logged_in = true
+    else
+      @logged_in = false
+    end
   end
 
   def new
@@ -31,6 +38,20 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     redirect_to admin_users_url, notice: "ユーザー「#{@user.name}」を削除しました。"
+  end
+
+  def following
+    @title = "Following"
+    @user  = User.find(params[:id])
+    @users = @user.following.page(params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @user  = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
   end
 
   private

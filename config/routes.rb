@@ -9,8 +9,14 @@ Rails.application.routes.draw do
   get 'sessions/show'
 
   namespace :admin do
-    resources :users
+    resources :users do
+      member do
+        get :following, :followers
+      end
+    end
   end
+
+  resources :relationships,       only: [:create, :destroy]
   
   root to: 'posts#index'
   resources :posts
