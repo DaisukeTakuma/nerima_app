@@ -1,5 +1,7 @@
 <% unless current_user.id == @user.id %>
   <div id="follow_form">
+  <!--フォローしていてもここの条件式がfalseとなる。他は問題ない。idsとは？users、modelのother_userはなんなのか-->
+
   <% if current_user.follower_ids == @user.id %>
     <%= render 'unfollow',user: @user %>
   <% else %>
