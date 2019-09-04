@@ -28,8 +28,8 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = current_user.posts.find(params[:id])
-    if @post.update(post_params)
+    post = current_user.posts.find(params[:id])
+    if post.update(post_params)
       redirect_to root_path, notice: '編集が完了しました'
     else
       flash[:alert] = '編集の保存に失敗しました'
@@ -58,11 +58,11 @@ class PostsController < ApplicationController
     params[:category_name].each do |cn1,cn2|
       #チェックが入っていたカテゴリ名をDBに登録
       if cn2 == "1"
-        @post = current_user.posts.new(post_params)
-        @post.category_name = cn1
+        post = current_user.posts.new(post_params)
+        post.category_name = cn1
         #if文で保存すると、複数回render、redirectしてしまうため使用不可
-        @post.save!
-        redirect_to @post, notice: "「#{@post.title}」を投稿しました。"
+        post.save!
+        redirect_to post, notice: "「#{post.title}」を投稿しました。"
       end
     end
   end

@@ -26,17 +26,17 @@ class Admin::UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      redirect_to admin_user_url(@user), notice: "ユーザー「#{@user.name}」を登録しました。"
+    user = User.new(user_params)
+    if user.save
+      redirect_to admin_user_url(user), notice: "ユーザー「#{user.name}」を登録しました。"
     else
       render :new
     end
   end
 
   def update
-    @user = User.find(params[:id])
-    if @user.update(user_update_params)
+    user = User.find(params[:id])
+    if user.update(user_update_params)
       redirect_to root_path, notice: 'ユーザー情報の編集が完了しました'
     else
       flash[:alert] = '編集の保存に失敗しました'
@@ -45,10 +45,9 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-    #@がなくてもよさそう
-    @user = User.find(params[:id])
-    @user.destroy
-    redirect_to admin_users_url, notice: "ユーザー「#{@user.name}」を削除しました。"
+    user = User.find(params[:id])
+    user.destroy
+    redirect_to admin_users_url, notice: "ユーザー「#{user.name}」を削除しました。"
   end
 
   def following
