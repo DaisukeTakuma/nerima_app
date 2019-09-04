@@ -34,7 +34,18 @@ class Admin::UsersController < ApplicationController
     end
   end
 
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_update_params)
+      redirect_to root_path, notice: 'ユーザー情報の編集が完了しました'
+    else
+      flash[:alert] = '編集の保存に失敗しました'
+      render :edit
+    end
+  end
+
   def destroy
+    #@がなくてもよさそう
     @user = User.find(params[:id])
     @user.destroy
     redirect_to admin_users_url, notice: "ユーザー「#{@user.name}」を削除しました。"
@@ -57,6 +68,10 @@ class Admin::UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :email, :admin, :password, :password_confirmation)
+  end
+
+  def user_update_params
+    params.require(:user).permit(:email, :password)
   end
   
   def require_admin
