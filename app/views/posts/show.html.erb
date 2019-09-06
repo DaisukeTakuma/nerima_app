@@ -39,6 +39,15 @@
         </div>
       </div>
       <br>
+        <div>
+          コメント一覧
+          <% @comments.each do |comment|%>
+            <h2><%= comment.comment %></h2>
+          <% end %>
+        </div>
+        <div>
+          <%= render "comments/form", comment: @comment %>
+        </div>
     </div>
   </div>
 </div>

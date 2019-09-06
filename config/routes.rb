@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
 
   resources :likes, only: [:create, :destroy]
-  resources :comments
+  resources :comments, only: [:create, :destroy]
 
   resources :relationships,       only: [:create, :destroy]
   
