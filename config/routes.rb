@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'likes/create'
+  get 'likes/destroy'
   get 'categories/index/:category_name', to: 'categories#index'
 
   get '/login', to: 'sessions#new'
@@ -15,6 +17,9 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  resources :likes, only: [:create, :destroy]
+  resources :comments
 
   resources :relationships,       only: [:create, :destroy]
   
