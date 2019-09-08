@@ -1,4 +1,7 @@
-<div class="container">
+<br>
+<div class="container bg-white">
+  <div class="row">
+  <div class="col-lg-10 offset-lg-1">
   <br>
   <h2>ユーザーの編集</h2>
   <%= form_with(model: [:admin, @user], local: true) do |f| %>
@@ -12,4 +15,8 @@
     </div>
     <%= f.submit "更新する", class: "btn btn-primary" %>
   <% end %>
+</div>
+
+</div>
+<br>
 </div>

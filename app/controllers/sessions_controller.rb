@@ -5,7 +5,15 @@ class SessionsController < ApplicationController
 
   def show
     @q = current_user.posts.ransack(params[:q])
-    @posts = @q.result(distinct: true).page(params[:page]).recent
+    @posts = @q.result(distinct: true).page(params[:page]).recent.per(10)
+  end
+
+  def show_comments
+    user = current_user
+    @comments = user.comments.page(params[:page]).recent.per(10)
+    @q = current_user.posts.ransack(params[:q])
+    @posts = @q.result(distinct: true).page(params[:page]).recent.per(10)
+    render :show_comments
   end
 
   def create

@@ -9,10 +9,14 @@ Rails.application.routes.draw do
 
   get 'sessions/new'
   get 'sessions/show'
+  get 'sessions/show_comments', to: 'sessions#show_comments'
+
+
 
   namespace :admin do
     resources :users do
       member do
+        get :show_comments
         get :following, :followers
       end
     end

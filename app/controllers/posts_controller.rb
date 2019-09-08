@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @user = User.find(@post.user_id)
-    @comments = @post.comments
+    @comments = @post.comments.page(params[:page]).recent.per(5)
     @comment = Comment.new
   end
 

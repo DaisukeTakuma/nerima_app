@@ -1,7 +1,8 @@
 <br>
 <div class="container">
-  <div class="row">
+  <div class="row bg-white">
     <div class="col-lg-10 offset-lg-1">
+    <br>
       <div class="card">
         <div class="card-header">
           <div class="row">
@@ -39,15 +40,53 @@
         </div>
       </div>
       <br>
-        <div>
-          コメント一覧
+    </div>
+  </div>
+  <br>
+  <br>
+  <div class="row bg-white">
+    <div class="col-lg-10 offset-lg-1">
+      <div class="row">
+        <div class="col-lg-12">
+          <br>
+          <h4>コメント一覧</h4>
+          <% if current_user.blank? then %>
+            <%= link_to 'ログイン', root_path %>
+            <%= link_to '新規ユーザー登録', root_path %>
+          <% end %>
           <% @comments.each do |comment|%>
-            <h2><%= comment.comment %></h2>
+            <div class="row">
+              <div class="col-lg-2">
+                <% usr = User.find(comment.user_id) %>
+                <%= usr.name %>
+              </div>
+              <div class="col-lg-2 offset-lg-8">
+                <%= link_to '編集', root_path %>
+                <%= link_to '削除', comment_path(comment.id), method: "delete", data: { confirm: "コメントを削除しますか?" } %>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <h6><%= simple_format(comment.comment, {}, sanitize: false) %></h6>
+              </div>
+            </div>
+            <br>
+          <% end %>
+          <br>
+          <%= paginate @comments %>
+          <%= page_entries_info @comments, entry_name: "コメント" %>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-lg-12">
+          <% unless current_user.blank? then %>
+            <%= render "comments/form", comment: @comment %>
           <% end %>
         </div>
-        <div>
-          <%= render "comments/form", comment: @comment %>
-        </div>
+      </div>
     </div>
   </div>
 </div>
+<br>
+

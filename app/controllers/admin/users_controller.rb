@@ -8,13 +8,25 @@ class Admin::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @q = Post.where(user_id: params[:id]).ransack(params[:q])
-    @posts = @q.result(distinct: true).page(params[:page]).recent
+    @posts = @q.result(distinct: true).page(params[:page]).recent.per(10)
+    @comments = @user.comments.page(params[:page]).recent.per(10)
 
     unless @current_user.blank? then
       @logged_in = true
     else
       @logged_in = false
     end
+  end
+
+  def show_comments
+    @user = User.find(params[:id])
+    @comments = @user.comments.page(params[:page]).recent.per(10)
+    unless @current_user.blank? then
+      @logged_in = true
+    else
+      @logged_in = false
+    end
+    render :show_comments
   end
 
   def new

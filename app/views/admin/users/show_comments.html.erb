@@ -27,19 +27,18 @@
     <div class="col-lg-10 offset-lg-1">
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-          <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">投稿</a>
-          <%= link_to 'コメント', show_comments_admin_user_path(@user), class: "nav-item nav-link"%>
+          <%= link_to '投稿', admin_user_path(@user), class: "nav-item nav-link"%>
+          <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">コメント</a>
         </div>
       </nav>
     </div>
   </div>
 </div>
 <div class="tab-content">
-  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+  <div class="tab-pane fade show active">
     <div class="container bg-white">
-      <%= render 'posts/users_post', user: @user %>
+      <%= render 'comments/users_comment' %>
     </div>
   </div>
 </div>
 <br>
-

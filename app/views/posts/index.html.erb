@@ -56,7 +56,7 @@
           <hr>
         </div>
         <div class="col-lg-4">
-          <%= link_to post.title, post_path(post) %>
+          <%= link_to post.title.truncate(20), post_path(post) %>
           <hr>
         </div>
         <div class="col-lg-2">
