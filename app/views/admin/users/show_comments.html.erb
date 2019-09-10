@@ -1,27 +1,4 @@
-<br>
-<div class="container bg-white">
-  <div class="row">
-    <div class="col-lg-10 offset-lg-1">
-      <br>
-      <h2><%= @user.name %>ユーザーの詳細</h2>
-      <hr>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-10 offset-lg-1">
-      <section class="stats">
-        <%= render 'shared/stats' %>
-      </section>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-10 offset-lg-1">
-      <%= render 'follow_form',user: @user %>
-      <br>
-    </div>
-  </div>
-</div>
-<br>
+<%= render 'mypage' %>
 <div class="container bg-white">
   <div class="row">
     <div class="col-lg-10 offset-lg-1">
