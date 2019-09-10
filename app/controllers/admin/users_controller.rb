@@ -2,7 +2,11 @@ class Admin::UsersController < ApplicationController
 #before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :following, :followers]
 
   def index
-    @users = User.all
+    if current_user.blank? || !current_user.admin?
+      redirect_to root_path, flash: {danger: "不正なアクセスです。"}
+    else
+      @users = User.all
+    end
   end
 
   def show
@@ -48,7 +52,7 @@ class Admin::UsersController < ApplicationController
 
   def update
     user = User.find(params[:id])
-    if user.update(user_update_params)
+    if user.update(user_params)
       redirect_to root_path, flash: {success: "ユーザー情報の編集が完了しました。"}
     else
       render :edit, flash: {danger: "編集が失敗しました。"}
@@ -78,10 +82,6 @@ class Admin::UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :email, :admin, :password, :password_confirmation)
-  end
-
-  def user_update_params
-    params.require(:user).permit(:email, :password)
   end
   
   def require_admin
