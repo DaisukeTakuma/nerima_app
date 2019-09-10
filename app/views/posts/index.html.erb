@@ -1,41 +1,90 @@
-<br><!--完了-->
-<div class="container text-center">
-  <% categories = [["結婚","btn btn-secondary btn-lg"],
-                    ["出産","btn btn-success btn-lg"],
-                    ["進学","btn btn-danger btn-lg"],
-                    ["医療","btn btn-warning btn-lg"],
-                    ["福祉","btn btn-info btn-lg"],
-                    ["仕事","btn btn-secondary btn-lg"],
-                    ["就職","btn btn-dark btn-lg"],
-                    ["退職","btn btn-success btn-lg"],
-                    ["災害","btn btn-secondary btn-lg"],
-                    ["おくやみ","btn btn-danger btn-lg"]
-                  ] %>
-  <% categories.each do | category,button_color | %>
-    <button type="button" class="<%= button_color %>">
-      <%= link_to "#{category}", "/categories/index/#{category}", style: "color:white" %>
-    </button>
-  <% end %>
-</div>
+<%= render 'layouts/flash_messages' %>
 <br>
-<div class="container">
-  <h2>全ての記事</h2>
-  <nav>
-    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" role="tab" aria-controls="nav-home" aria-selected="true">新着</a>
-    </div>
-  </nav>
-    <ul class="list-group list-group-flush">
-        <br>
-        <strong>記事タイトル</strong>
-        <br>
-      <% @posts.each do |post| %>
-        <li class="list-group-item"><%= link_to post.title, post_path(post) %></li>
+<div class="container bg-white">
+  <div class="row text-center">
+    <div class="col-lg-10 offset-lg-1">
+      <br>
+      <% categories = [["結婚","btn btn-warning btn-lg"],
+                        ["出産","btn btn-success btn-lg"],
+                        ["進学","btn btn-primary btn-lg"],
+                        ["医療","btn btn-danger btn-lg"],
+                        ["福祉","btn btn-info btn-lg"],
+                        ["仕事","btn btn-warning btn-lg"],
+                        ["就職","btn btn-primary btn-lg"],
+                        ["退職","btn btn-dark btn-lg"],
+                        ["災害","btn btn-danger btn-lg"],
+                        ["おくやみ","btn btn-dark btn-lg"]
+                      ] %>
+      <% categories.each do | category,button_color | %>
+        <button type="button" class="<%= button_color %>">
+          <%= link_to "#{category}", "/categories/index/#{category}", style: "color:white" %>
+        </button>
       <% end %>
-    </ul>
-  <div class="container">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-10 offset-lg-1">
+      <br>
+      <h2>全ての記事</h2>
+      <hr>
+    </div>
+  </div>
+  <div class="row">
     <br>
-    <%= paginate @posts %>
-    <%= page_entries_info @posts, entry_name: "投稿" %>
+    <div class="col-lg-1 offset-lg-1">
+      <strong>カテゴリ</strong>
+      <hr>
+    </div>
+    <div class="col-lg-4">
+      <strong>記事タイトル</strong>
+      <hr>
+    </div>
+    <div class="col-lg-1">
+      <strong>いいね数</strong>
+      <hr>
+    </div>
+    <div class="col-lg-2">
+      <strong>投稿者</strong>
+      <hr>
+    </div>
+    <div class="col-lg-2">
+      <strong>更新日時</strong>
+      <hr>
+    </div>
+  </div>
+  <ul class="list-group list-group-flush">
+    <% @posts.each do |post| %>
+      <% user = User.find_by(id: post.user_id) %>
+      <div class="row">
+        <div class="col-lg-1 offset-lg-1">
+          <%= post.category_name %>
+          <hr>
+        </div>
+        <div class="col-lg-4">
+          <%= link_to post.title.truncate(20), post_path(post), {:style=>'color:black;', :class => "css_class"} %>
+          <hr>
+        </div>
+        <div class="col-lg-1">
+          <%= content_tag :span, "  #{post.likes_count}", class: "fas fa-heart" %>
+          <hr>
+        </div>
+        <div class="col-lg-2">
+          <%= link_to user.name, admin_user_path(user) %>
+          <hr>
+        </div>
+        <div class="col-lg-2">
+          <%= l(post.updated_at, format: :long) %>
+          <hr>
+        </div>
+      </div>
+    <% end %>
+  </ul>
+  <div class="row">
+    <div class="col-lg-10 offset-lg-1">
+      <br>
+      <%= paginate @posts %>
+      <%= page_entries_info @posts, entry_name: "投稿" %>
+    </div>
   </div>
 </div>
+<br>

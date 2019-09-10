@@ -7,6 +7,16 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+    attributes:
+      post:
+        id: ID
+        title: タイトル
+        summary: 要約
+        description: 本文
+        image: 画像ファイル
+        url: 参考URL
+        created_at: 登録日時
+        updated_at: 更新日時
   date:
     abbr_day_names:
     - 日
@@ -40,7 +50,7 @@ ja:
     - 土曜日
     formats:
       default: "%Y/%m/%d"
-      long: "%Y年%m月%d日(%a)"
+      long: '%Y年%-m月%-d日(%a)'
       short: "%m/%d"
     month_names:
     - 

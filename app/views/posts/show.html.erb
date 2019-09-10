@@ -1,33 +1,100 @@
-<div class="container"><!--完了-->
+<%= render 'layouts/flash_messages' %>
 <br>
-  <div class="card">
-    <div class="card-header">
-      <!--ユーザーごとにユーザー名を表示させたい。
-      最終的に、未ログインユーザーでも閲覧できるようにする。
-      その際にコントローラーに記述が必要。リンク先も変更が必要か？sessions_showなので未ログインユーザーは飛べない？
-      -->
-      <h4><%= link_to 'ユーザー名', sessions_show_path, class: "text-right" %></h4>
-      <h2 class=""><%= @post.title %></h2>
-      <div class="pull-right">
-        <%= link_to 'Home', root_path %>
-        <%= link_to '編集', edit_post_path %>
-        <%= link_to '削除', post_path, method: "delete", data: { confirm: "Are you sure?" } %>
+<div class="container">
+  <div class="row bg-white">
+    <div class="col-lg-10 offset-lg-1">
+    <br>
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-lg-12">
+              <h2><%= @post.title %></h2>
+            </div>
+            <span class="col-lg-2 offset-lg-10", id="like">
+              <%= render "likes/like", post: @post %>
+            </span>
+          </div>
+                      <div class="row">
+            <section class="col-lg-2 offset-lg-10">
+              <%= link_to 'Home', root_path %>
+              <%= link_to '編集', edit_post_path %>
+              <%= link_to '削除', post_path, method: "delete", data: { confirm: "投稿を削除しますか?" } %>
+            </section>
+            </div>
+          <div class="row">
+            <section class="col-lg-4">
+              <%= link_to "#{@user.name}さんの投稿", admin_user_path(@user) %>
+              </section>
+              <section class="col-lg-3 offset-lg-5">
+              <%= "更新日時：#{@post.updated_at.strftime("%Y年%-m月%-d日")}" %>
+            </section>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">要約</h3>
+          <%= simple_format(@post.summary, {}, sanitize: false) %>
+          <hr>
+          <h3 class="card-title">記事詳細</h3>
+          <%= simple_format(@post.description, {}, sanitize: false) %>
+          <% if @post.image.attached? %>
+            <hr>
+            <h4 class="card-title">画像</h4>
+            <%= image_tag(@post.image, class: "img-fluid") %>
+            <hr>
+          <% end %>
+          <hr>
+          <h6 class="card-title">参考URL</h6>
+          <%= auto_link(@post.url, html: { :target => "_blank" }) %>
+        </div>
       </div>
+      <br>
     </div>
-    <div class="card-body">
-      <h3 class="card-title">要約</h3>
-      <%= @post.summary %>
-      <hr>
-      <h3 class="card-title">記事詳細</h3>
-      <%= @post.description %>
-      <hr>
-      <% if @post.image.attached? %>
-        <h4 class="card-title">画像</h4>
-        <!--画像がはみ出てしまう-->
-        <%= image_tag @post.image %>
-      <% end %>
-      <hr>
-      <h6 class="card-title">参考URL：<%= @post.url %></h6>
+  </div>
+  <br>
+  <br>
+  <div class="row bg-white">
+    <div class="col-lg-10 offset-lg-1">
+      <div class="row">
+        <div class="col-lg-12">
+          <br>
+          <h4>コメント一覧</h4>
+          <% if current_user.blank? then %>
+            <%= link_to 'ログイン', root_path %>
+            <%= link_to '新規ユーザー登録', root_path %>
+          <% end %>
+          <% @comments.each do |comment|%>
+            <div class="row">
+              <div class="col-lg-2">
+                <% usr = User.find(comment.user_id) %>
+                <%= usr.name %>
+              </div>
+              <div class="col-lg-2 offset-lg-8">
+                <%= link_to '編集', root_path %>
+                <%= link_to '削除', comment_path(comment.id), method: "delete", data: { confirm: "コメントを削除しますか?" } %>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <h6><%= simple_format(comment.comment, {}, sanitize: false) %></h6>
+              </div>
+            </div>
+            <br>
+          <% end %>
+          <br>
+          <%= paginate @comments %>
+          <%= page_entries_info @comments, entry_name: "コメント" %>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-lg-12">
+          <% unless current_user.blank? then %>
+            <%= render "comments/form", comment: @comment %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+<br>
+

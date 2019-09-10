@@ -1,0 +1,27 @@
+<br>
+<div class="container bg-white">
+  <div class="row">
+    <aside class="col-lg-10 offset-lg-1">
+      <section>
+        <h2><%= "#{@user.name}さん#{@title}" %></h2>
+        <div><%= link_to "マイページに戻る", sessions_show_path %></div>
+      </section>
+      <section class="stats">
+        <%= render 'shared/stats' %>
+      </section>
+    </aside>
+    <% provide(:title, @title) %>
+  </div>
+</div>
+<br>
+<div class="container bg-white">
+  <div class="row">
+    <article class="col-lg-10 offset-lg-1">
+      <section>
+        <% @users.each do |user| %>
+          <%= link_to "#{user.name}", admin_user_path(user) %>
+        <% end %>
+      </section>
+    </article>
+  </div>
+</div>

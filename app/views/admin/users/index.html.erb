@@ -1,17 +1,54 @@
-<div class="container">
-  <p></p>
-  <h2>ユーザーの一覧</h2>
-  <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-      <ul class="list-group list-group-flush">
-        <% @users.each do |user| %>
-          <li class="list-group-item">
-            <%= link_to "#{user.name}", admin_user_path(user.id) %>
-            <%= link_to "編集", edit_admin_user_path(user.id) %>
-            <%= link_to '削除', [:admin, user], method: "delete", data: { confirm: "#{user.name}さんを削除しますか?" } %>
-          </li>
-        <% end %>
-      </ul>
+<%= render 'layouts/flash_messages' %>
+<br>
+<div class="container bg-white">
+  <div class="row">
+    <div class="col-lg-10 offset-lg-1">
+      <br>
+      <h2>ユーザーの一覧</h2>
+      <hr>
     </div>
   </div>
+  <div class="row">
+    <div class="col-lg-3 offset-lg-1">
+      <strong>ユーザー名</strong>
+      <hr>
+    </div>
+    <div class="col-lg-2">
+      <strong>ステータス</strong>
+      <hr>
+    </div>
+    <div class="col-lg-2">
+      <strong>変更</strong>
+      <hr>
+    </div>
+  </div>
+  <ul class="list-group list-group-flush">
+    <% @users.each do |user| %>
+      <div class="row">
+        <div class="col-lg-3 offset-lg-1">
+          <%= link_to "#{user.name}", admin_user_path(user.id) %>
+          <hr>
+        </div>
+        <div class="col-lg-2">
+          <% if user.admin?%>
+            <%= "管理者ユーザー" %>
+          <% else %>
+            <%= "一般ユーザー" %>
+          <% end %>
+          <hr>
+        </div>
+        <div class="col-lg-1">
+          <%= link_to "編集", edit_admin_user_path(user.id) %>
+          <hr>
+        </div>
+        <div class="col-lg-1">
+          <!--:adminの必要性について考えたい多分、trueか何か。そもそも、adminしか見られないページなのでadmin
+          がなくてもOK普段はどうなるのか。-->
+          <%= link_to '削除', [:admin, user], method: :delete, data: { confirm: "#{user.name}さんを削除しますか?" } %>
+          <hr>
+        </div>
+      </div>
+    <% end %>
+  </ul>
 </div>
+<br>

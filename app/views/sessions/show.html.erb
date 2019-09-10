@@ -1,31 +1,21 @@
-<div class="container">
+<%= render 'mypage' %>
+<div class="container bg-white">
   <div class="row">
-    <div class="col-md-3">
-      <table class="table table-striped">
-        <thead>
-        <table>
-          <tr>
-            <th>記事タイトル</th>
-            <th>カテゴリー</th>
-            <th>更新日時</th>
-          </tr>
-          </table>
-        </thead>
-      </table>
+    <div class="col-lg-10 offset-lg-1">
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">投稿</a>
+          <%= link_to 'コメント', sessions_show_comments_path, class: "nav-item nav-link" %>
+        </div>
+      </nav>
     </div>
-  </div>
-  <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-      <ul class="list-group list-group-flush">
-        <% @posts.each do |post| %>
-          <li class="list-group-item"><%= link_to post.title, post_path(post) %></li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-    <div class="container">
-    <br>
-    <%= paginate @posts %>
-    <%= page_entries_info @posts, entry_name: "投稿" %>
   </div>
 </div>
+<div class="tab-content">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+    <div class="container bg-white">
+      <%= render 'posts/users_post' %>
+    </div>
+  </div>
+</div>
+<br>

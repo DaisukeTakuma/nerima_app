@@ -1,0 +1,12 @@
+<%= form_with(model: comment, local: true) do |f| %>
+  <h5>コメントフォーム</h5>
+  <div class="form-group">
+    <%= f.hidden_field :post_id, value: "#{@post.id}" %>
+    <%= f.hidden_field :user_id, value: "#{current_user.id}" %>
+    <%= f.text_area :comment, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.submit "コメントを投稿する", class: "btn btn-primary" %>
+  </div>
+<% end %>
+<br>
