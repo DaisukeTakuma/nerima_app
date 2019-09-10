@@ -6,12 +6,16 @@
   </div>
   </div>
   <div class="row">
-    <div class="col-lg-2 offset-lg-1">
+    <div class="col-lg-1 offset-lg-1">
       <strong>カテゴリ</strong>
       <hr>
     </div>
     <div class="col-lg-4">
       <strong>記事タイトル</strong>
+      <hr>
+    </div>
+    <div class="col-lg-1">
+      <strong>いいね数</strong>
       <hr>
     </div>
     <div class="col-lg-2">
@@ -26,12 +30,16 @@
   <ul class="list-group list-group-flush">
     <% @posts.each do |post| %>
       <div class="row">
-        <div class="col-lg-2 offset-lg-1">
+        <div class="col-lg-1 offset-lg-1">
           <%= post.category_name %>
           <hr>
         </div>
         <div class="col-lg-4">
-          <%= link_to post.title.truncate(20), post_path(post) %>
+          <%= link_to post.title.truncate(20), post_path(post), {:style=>'color:black;', :class => "css_class"} %>
+          <hr>
+        </div>
+        <div class="col-lg-1">
+          <%= content_tag :span, " #{post.likes_count}", class: "fas fa-heart" %>
           <hr>
         </div>
         <div class="col-lg-1">

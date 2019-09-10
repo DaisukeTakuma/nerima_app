@@ -1,5 +1,5 @@
 <%= form_with(model: comment, local: true) do |f| %>
-  <h5>投稿フォーム</h5>
+  <h5>コメントフォーム</h5>
   <div class="form-group">
     <%= f.hidden_field :post_id, value: "#{@post.id}" %>
     <%= f.hidden_field :user_id, value: "#{current_user.id}" %>

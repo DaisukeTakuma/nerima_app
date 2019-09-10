@@ -12,11 +12,19 @@
       <strong>記事タイトル</strong>
       <hr>
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-1">
+      <strong>コメント</strong>
+      <hr>
+    </div>
+    <div class="col-lg-1">
+      <strong>いいね数</strong>
+      <hr>
+    </div>
+    <div class="col-lg-2">
       <strong>投稿者</strong>
       <hr>
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-2">
       <strong>更新日時</strong>
       <hr>
     </div>
@@ -27,14 +35,22 @@
         <% @posts.each do |post| %>
           <% user = User.find_by(id: post.user_id) %>
           <div class="col-lg-4 offset-lg-1">
-            <%= link_to post.title, post_path(post) %>
+            <%= link_to post.title.truncate(20), post_path(post), {:style=>'color:black;', :class => "css_class"} %>
             <hr>
           </div>
-          <div class="col-lg-3">
+          <div class="col-lg-1">
+            <%= content_tag :span, "#{post.comments.count}コメ" %>
+            <hr>
+          </div>
+          <div class="col-lg-1">
+            <%= content_tag :span, " #{post.likes_count}", class: "fas fa-heart" %>
+            <hr>
+          </div>
+          <div class="col-lg-2">
             <%= link_to user.name, root_path %>
             <hr>
           </div>
-          <div class="col-lg-3">
+          <div class="col-lg-2">
             <%= l(post.updated_at, format: :long) %>
             <hr>
           </div>

@@ -1,1 +1,1 @@
-$("#post-<%= @post.id %> .like").html("<%= escape_javascript(render "likes/like", post: @post) %>");
+$("#like").html("<%= escape_javascript(render "likes/like", post: @post) %>");

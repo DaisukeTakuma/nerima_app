@@ -8,11 +8,12 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-10 offset-lg-1">
-      <section class="stats">
+      <section class="col-lg-4 offset-lg-1">
         <%= render 'shared/stats' %>
       </section>
-    </div>
+      <section class="col-lg-2 offset-lg-5">
+        <%= link_to "退会する", admin_user_path(@current_user), method: "delete", data: { confirm: "本当に退会しますか?" } %>
+      </section>
   </div>
   <div class="row">
     <div class="col-lg-10 offset-lg-1">

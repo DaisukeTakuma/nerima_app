@@ -5,7 +5,7 @@ class LikesController < ApplicationController
       @post.like(current_user)
       @post.reload
       respond_to do |format|
-        format.html { redirect_to request.referrer || root_url }
+        format.html { redirect_to request.referrer }
         format.js
       end
     end
@@ -17,7 +17,7 @@ class LikesController < ApplicationController
       @post.unlike(current_user)
       @post.reload
       respond_to do |format|
-        format.html { redirect_to request.referrer || root_url }
+        format.html { redirect_to request.referrer }
         format.js
       end
     end

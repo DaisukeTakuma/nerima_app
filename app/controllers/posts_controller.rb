@@ -22,20 +22,19 @@ class PostsController < ApplicationController
       if current_user.admin? || current_user.id == post.user_id
         @posts = post
       else
-        redirect_to root_path, notice: '権限がありません'
+        redirect_to root_path, flash: {danger: "編集権限がありません。"}
       end
     else
-      redirect_to root_path, notice: '権限がありません'
+      redirect_to root_path, flash: {danger: "編集権限がありません。"}
     end
   end
 
   def update
     post = current_user.posts.find(params[:id])
     if post.update(post_params)
-      redirect_to root_path, notice: '編集が完了しました'
+      redirect_to root_path, flash: {success: "記事の編集が完了しました。"}
     else
-      flash[:alert] = '編集の保存に失敗しました'
-      render :edit
+      render :edit, flash: {danger: "編集の保存に失敗しました。"}
     end
   end
 
@@ -46,12 +45,12 @@ class PostsController < ApplicationController
       #ログインユーザがadminか、投稿者なら削除を実行
       if current_user.admin? || current_user.id == post.user_id
         post.destroy
-        redirect_to root_path, notice: '削除が完了しました'
+        redirect_to root_path, flash: {success: "記事の削除が完了しました。"}
       else
-        redirect_to root_path, notice: '権限がありません'
+        redirect_to root_path, flash: {danger: "削除権限がありません。"}
       end
     else
-      redirect_to root_path, notice: '権限がありません'
+      redirect_to root_path, flash: {danger: "削除権限がありません。"}
     end
   end
 
@@ -63,8 +62,11 @@ class PostsController < ApplicationController
         post = current_user.posts.new(post_params)
         post.category_name = cn1
         #if文で保存すると、複数回render、redirectしてしまうため使用不可
-        post.save!
-        redirect_to post, notice: "「#{post.title}」を投稿しました。"
+        if post.save
+        redirect_to post, flash: {success: "「#{post.title}」を投稿しました。"}
+        else
+        redirect_to new, flash: {danger: "記事投稿に失敗しました"}
+        end
       end
     end
   end

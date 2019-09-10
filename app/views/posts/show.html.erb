@@ -1,3 +1,4 @@
+<%= render 'layouts/flash_messages' %>
 <br>
 <div class="container">
   <div class="row bg-white">
@@ -9,17 +10,24 @@
             <div class="col-lg-12">
               <h2><%= @post.title %></h2>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-3">
-              <%= link_to "#{@user.name}さんの投稿", admin_user_path(@user) %>
-            </div>
-            <div class="col-lg-2 offset-lg-7">
+            <span class="col-lg-2 offset-lg-10", id="like">
               <%= render "likes/like", post: @post %>
+            </span>
+          </div>
+                      <div class="row">
+            <section class="col-lg-2 offset-lg-10">
               <%= link_to 'Home', root_path %>
               <%= link_to '編集', edit_post_path %>
               <%= link_to '削除', post_path, method: "delete", data: { confirm: "投稿を削除しますか?" } %>
+            </section>
             </div>
+          <div class="row">
+            <section class="col-lg-4">
+              <%= link_to "#{@user.name}さんの投稿", admin_user_path(@user) %>
+              </section>
+              <section class="col-lg-3 offset-lg-5">
+              <%= "更新日時：#{@post.updated_at.strftime("%Y年%-m月%-d日")}" %>
+            </section>
           </div>
         </div>
         <div class="card-body">
