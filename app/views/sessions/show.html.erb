@@ -1,30 +1,4 @@
-<br>
-<div class="container bg-white">
-  <div class="row">
-    <div class="col-lg-10 offset-lg-1">
-      <br>
-      <h2><%= @current_user.name %>さんの記事</h2>
-      <hr>
-    </div>
-  </div>
-  <div class="row">
-      <section class="col-lg-4 offset-lg-1">
-        <%= render 'shared/stats' %>
-      </section>
-      <section class="col-lg-2 offset-lg-4">
-        <%= link_to "ユーザー情報の編集", edit_admin_user_path(@user.id) %>
-        <%= link_to "退会する", admin_user_path(@current_user), method: "delete", data: { confirm: "本当に退会しますか?" } %>
-      </section>
-  </div>
-  <div class="row">
-    <div class="col-lg-10 offset-lg-1">
-      <%= render 'admin/users/follow_form', user: @user %>
-      <br>
-    </div>
-  </div>
-</div>
-</div>
-<br>
+<%= render 'mypage' %>
 <div class="container bg-white">
   <div class="row">
     <div class="col-lg-10 offset-lg-1">
