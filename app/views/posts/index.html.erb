@@ -1,18 +1,19 @@
+<%= render 'layouts/flash_messages' %>
 <br>
 <div class="container bg-white">
   <div class="row text-center">
     <div class="col-lg-10 offset-lg-1">
       <br>
-      <% categories = [["結婚","btn btn-secondary btn-lg"],
+      <% categories = [["結婚","btn btn-warning btn-lg"],
                         ["出産","btn btn-success btn-lg"],
-                        ["進学","btn btn-danger btn-lg"],
-                        ["医療","btn btn-warning btn-lg"],
+                        ["進学","btn btn-primary btn-lg"],
+                        ["医療","btn btn-danger btn-lg"],
                         ["福祉","btn btn-info btn-lg"],
-                        ["仕事","btn btn-secondary btn-lg"],
-                        ["就職","btn btn-dark btn-lg"],
-                        ["退職","btn btn-success btn-lg"],
-                        ["災害","btn btn-secondary btn-lg"],
-                        ["おくやみ","btn btn-danger btn-lg"]
+                        ["仕事","btn btn-warning btn-lg"],
+                        ["就職","btn btn-primary btn-lg"],
+                        ["退職","btn btn-dark btn-lg"],
+                        ["災害","btn btn-danger btn-lg"],
+                        ["おくやみ","btn btn-dark btn-lg"]
                       ] %>
       <% categories.each do | category,button_color | %>
         <button type="button" class="<%= button_color %>">
@@ -30,12 +31,16 @@
   </div>
   <div class="row">
     <br>
-    <div class="col-lg-2 offset-lg-1">
+    <div class="col-lg-1 offset-lg-1">
       <strong>カテゴリ</strong>
       <hr>
     </div>
     <div class="col-lg-4">
       <strong>記事タイトル</strong>
+      <hr>
+    </div>
+    <div class="col-lg-1">
+      <strong>いいね数</strong>
       <hr>
     </div>
     <div class="col-lg-2">
@@ -51,12 +56,16 @@
     <% @posts.each do |post| %>
       <% user = User.find_by(id: post.user_id) %>
       <div class="row">
-        <div class="col-lg-2 offset-lg-1">
+        <div class="col-lg-1 offset-lg-1">
           <%= post.category_name %>
           <hr>
         </div>
         <div class="col-lg-4">
-          <%= link_to post.title, post_path(post) %>
+          <%= link_to post.title.truncate(20), post_path(post), {:style=>'color:black;', :class => "css_class"} %>
+          <hr>
+        </div>
+        <div class="col-lg-1">
+          <%= content_tag :span, "  #{post.likes_count}", class: "fas fa-heart" %>
           <hr>
         </div>
         <div class="col-lg-2">
