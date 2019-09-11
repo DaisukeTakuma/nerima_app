@@ -55,10 +55,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    title = params[:title]
-    description = params[:description]
     #:category_nameは、カテゴリ名と0(チェックなし)または1(チェックあり)がペアの2次元配列
-    unless title.blank? || description.blank? then
       params[:category_name].each do |cn1,cn2|
         #チェックが入っていたカテゴリ名をDBに登録
         if cn2 == "1"
@@ -66,12 +63,11 @@ class PostsController < ApplicationController
           post.category_name = cn1
           #if文で保存すると、複数回render、redirectしてしまうため使用不可
           post.save
-          redirect_to post, flash: {success: "「#{post.title}」を投稿しました。"} and return
+          redirect_to post, flash: {success: "「#{post.title}」を投稿しました。"}
+        else
+          redirect_to new, flash: {danger: "記事投稿に失敗しました。入力が足りない可能性があります。"} and return
         end
       end
-    else
-      redirect_to new, flash: {danger: "記事投稿に失敗しました。入力が足りない可能性があります。"} and return
-    end
   end
 
   private
