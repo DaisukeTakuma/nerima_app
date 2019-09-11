@@ -55,10 +55,12 @@ class PostsController < ApplicationController
   end
 
   def create
+    title = params[:title]
+    description = params[:description]
     #:category_nameは、カテゴリ名と0(チェックなし)または1(チェックあり)がペアの2次元配列
     params[:category_name].each do |cn1,cn2|
       #チェックが入っていたカテゴリ名をDBに登録
-      if cn2 == "1"
+      if title.blank? || description.blank? || cn2 == "1"
         post = current_user.posts.new(post_params)
         post.category_name = cn1
         #if文で保存すると、複数回render、redirectしてしまうため使用不可
