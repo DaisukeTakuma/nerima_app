@@ -20,9 +20,11 @@
   <div class="row">
     <article class="col-lg-10 offset-lg-1">
       <section>
+      <ul>
         <% @users.each do |user| %>
-          <%= link_to "#{user.name}", admin_user_path(user) %>
+          <li><%= link_to "#{user.name}", admin_user_path(user) %></li>
         <% end %>
+      </ul>
       </section>
     </article>
   </div>
