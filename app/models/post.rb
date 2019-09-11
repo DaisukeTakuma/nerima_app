@@ -1,10 +1,10 @@
 class Post < ApplicationRecord
   has_one_attached :image
   
-  validates :title, presence: true
-  validates :title, length: { maximum: 30 }
-  validates :category_name, presence: true
-
+  validates :title, presence: false, length: { maximum: 30 }
+  validates :description, presence: false
+  validates :category_name, presence: false
+  
   has_many :likes, dependent: :destroy
   has_many :like_users, through: :likes, source: :user
 
