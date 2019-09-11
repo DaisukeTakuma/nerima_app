@@ -3,8 +3,10 @@
   <div class="row">
     <aside class="col-lg-10 offset-lg-1">
       <section>
+      <% unless current_user.blank? %>
         <h2><%= "#{@user.name}さん#{@title}" %></h2>
         <div><%= link_to "マイページに戻る", sessions_show_path %></div>
+      <% end %>
       </section>
       <section class="stats">
         <%= render 'shared/stats' %>
