@@ -64,8 +64,6 @@ class PostsController < ApplicationController
         #if文で保存すると、複数回render、redirectしてしまうため使用不可
         post.save
         redirect_to post, flash: {success: "「#{post.title}」を投稿しました。"}
-      else
-      redirect_to new, flash: {danger: "記事投稿に失敗しました。入力が足りない可能性があります。"} and return
       end
     end
   end
