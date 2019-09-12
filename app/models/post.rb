@@ -8,9 +8,9 @@ class Post < ApplicationRecord
   scope :recent, -> { order(updated_at: :desc) }
   has_one_attached :image
 
-  validates :title, presence: false, length: { maximum: 30 }
-  validates :description, presence: false
-  validates :category_name, presence: false
+  validates :title, presence: true, length: { maximum: 30 }
+  validates :description, presence: true
+  validates :category_name, presence: true
 
   def like(user)
     likes.create(user_id: user.id)
