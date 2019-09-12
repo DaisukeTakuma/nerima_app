@@ -45,7 +45,7 @@ class Admin::UsersController < ApplicationController
     if user.save
       redirect_to admin_user_url(user), flash: {success: "ユーザー「#{user.name}」を登録しました。"}
     else
-      render :new, flash: {danger: "登録に失敗しました。入力内容が足りない可能性があります。"}
+      redirect_to new_admin_user_path, flash: {danger: "登録に失敗しました。入力内容が足りない可能性があります。"}
     end
   end
 
