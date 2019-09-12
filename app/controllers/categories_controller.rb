@@ -5,6 +5,7 @@ class CategoriesController < ApplicationController
       @posts = @q.result(distinct: true).page(params[:page]).recent
     else
       render root_path, flash: {info: "#{params[:category_name]}カテゴリには、まだ記事がありません。"}
+      return
     end
   end
 end

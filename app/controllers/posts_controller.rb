@@ -3,8 +3,8 @@ class PostsController < ApplicationController
   end
 
   def show
-    @user = User.find(@post.user_id)
     @post = Post.find(params[:id])
+    @user = User.find(@post.user_id)
     @comments = @post.comments.page(params[:page]).recent.per(5)
     @comment = Comment.new
   end
@@ -30,17 +30,17 @@ class PostsController < ApplicationController
 
   def create
     #:category_nameは、カテゴリ名と0(チェックなし)または1(チェックあり)がペアの2次元配列
-      params[:category_name].each do |cn1,cn2|
-        #チェックが入っていたカテゴリ名をDBに登録
-        if cn2 == "1"
-          post = current_user.posts.new(post_params)
-          post.category_name = cn1
-          #if文で保存すると、複数回render、redirectしてしまうため使用不可
-          post.save
-          redirect_to post, flash: {success: "「#{post.title}」を投稿しました。"}
-        end
+    params[:category_name].each do |cn1,cn2|
+      #チェックが入っていたカテゴリ名をDBに登録
+      if cn2 == "1"
+        post = current_user.posts.new(post_params)
+        post.category_name = cn1
+        #if文で保存すると、複数回render、redirectしてしまうため使用不可
+        post.save
+        redirect_to posts, flash: {success: "「#{post.title}」を投稿しました。"}
       end
     end
+  end
 
   def update
     post = current_user.posts.find(params[:id])
