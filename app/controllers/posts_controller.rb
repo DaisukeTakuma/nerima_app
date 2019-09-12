@@ -37,8 +37,7 @@ class PostsController < ApplicationController
         post.category_name = cn1
         #if文で保存すると、複数回render、redirectしてしまうため使用不可
         post.save
-        redirect_to post_path, flash: {success: "「#{post.title}」を投稿しました。"}
-        return
+        redirect_to post_path(post), flash: {success: "「#{post.title}」を投稿しました。"}
       end
     end
   end
