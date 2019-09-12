@@ -1,16 +1,11 @@
-<!--ログインユーザーが自分の場合は実行しない-->
-<!--未ログインの場合はfollowを表示し、新規ユーザー登録画面に飛ばし、フォローするには新規登録してくださいと表示させたい-->
 <% unless current_user.blank? then %>
   <% unless current_user.id == user.id then %>
     <div id="follow_form">
-    <!--フォローしていてもここの条件式がfalseとなる。他は問題ない。idsとは？users、modelのother_userはなんなのか-->
-    <!--ログインユーザー-->
-    <% if current_user.active_relationships.find_by(followed_id: user.id) %>
-      <%= render 'unfollow',user: @user %>
-    <% else %>
-    <!--フォローしていない場合は表示する-->
-      <%= render 'follow', user: @user %>
-    <% end %>
+      <% if current_user.active_relationships.find_by(followed_id: user.id) %>
+        <%= render 'unfollow',user: @user %>
+      <% else %>
+        <%= render 'follow', user: @user %>
+      <% end %>
     </div>
   <% end %>
 <% else %>

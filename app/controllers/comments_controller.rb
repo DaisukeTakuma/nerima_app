@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
     if comment.save
       redirect_to post_path(comment.post_id), flash: {success: "コメントしました。"}
     else
-      redirect_to root_path, flash: {danger: "コメントに失敗しました。"}
+      render root_path, flash: {danger: "コメントに失敗しました。"}
     end
   end
 
@@ -17,15 +17,14 @@ class CommentsController < ApplicationController
         comment.destroy
         redirect_to post_path(comment.post_id), flash: {success: "削除が完了しました。"}
       else
-        redirect_to post_path(comment.post_id), flash: {danger: "削除権限がありません。"}
+        render post_path(comment.post_id), flash: {danger: "削除権限がありません。"}
       end
     else
-      redirect_to post_path(comment.post_id), flash: {danger: "削除権限がありません。"}
+      render post_path(comment.post_id), flash: {danger: "削除権限がありません。"}
     end
   end
 
   private
-
   def comment_params
     params.require(:comment).permit(:post_id, :user_id, :comment)
   end

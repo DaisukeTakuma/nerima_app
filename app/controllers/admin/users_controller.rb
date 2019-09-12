@@ -1,6 +1,4 @@
 class Admin::UsersController < ApplicationController
-#before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :following, :followers]
-
   def index
     if current_user.blank? || !current_user.admin?
       redirect_to root_path, flash: {danger: "不正なアクセスです。"}
@@ -11,9 +9,9 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @comments = @user.comments.page(params[:page]).recent.per(10)
     @q = Post.where(user_id: params[:id]).ransack(params[:q])
     @posts = @q.result(distinct: true).page(params[:page]).recent.per(10)
-    @comments = @user.comments.page(params[:page]).recent.per(10)
 
     unless @current_user.blank? then
       @logged_in = true
@@ -25,6 +23,7 @@ class Admin::UsersController < ApplicationController
   def show_comments
     @user = User.find(params[:id])
     @comments = @user.comments.page(params[:page]).recent.per(10)
+    
     unless @current_user.blank? then
       @logged_in = true
     else

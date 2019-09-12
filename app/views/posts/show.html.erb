@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row bg-white">
     <div class="col-lg-10 offset-lg-1">
-    <br>
+      <br>
       <div class="card">
         <div class="card-header">
           <div class="row">
@@ -14,13 +14,13 @@
               <%= render "likes/like", post: @post %>
             </span>
           </div>
-                      <div class="row">
+          <div class="row">
             <section class="col-lg-2 offset-lg-10">
               <%= link_to 'Home', root_path %>
               <%= link_to '編集', edit_post_path %>
               <%= link_to '削除', post_path, method: "delete", data: { confirm: "投稿を削除しますか?" } %>
             </section>
-            </div>
+          </div>
           <div class="row">
             <section class="col-lg-4">
               <%= link_to "#{@user.name}さんの投稿", admin_user_path(@user) %>
@@ -97,4 +97,3 @@
   </div>
 </div>
 <br>
-

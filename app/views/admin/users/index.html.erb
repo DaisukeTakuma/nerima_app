@@ -42,8 +42,6 @@
           <hr>
         </div>
         <div class="col-lg-1">
-          <!--:adminの必要性について考えたい多分、trueか何か。そもそも、adminしか見られないページなのでadmin
-          がなくてもOK普段はどうなるのか。-->
           <%= link_to '削除', [:admin, user], method: :delete, data: { confirm: "#{user.name}さんを削除しますか?" } %>
           <hr>
         </div>

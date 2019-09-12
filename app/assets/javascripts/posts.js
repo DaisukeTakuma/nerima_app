@@ -1,4 +1,3 @@
-
   function categoryflg0(checked){
     if(checked == true){
       document.getElementById("category1").disabled = true;

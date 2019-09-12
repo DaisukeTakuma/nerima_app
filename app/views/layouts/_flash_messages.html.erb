@@ -1,9 +1,9 @@
 <aside>
-<% flash.each do |message_type, message| %>
+  <% flash.each do |message_type, message| %>
     <div class="alert alert-<%= message_type %>">
-    <section  class="container">
-      <%= message %>
-          </section>
+      <section  class="container">
+        <%= message %>
+      </section>
     </div>
-<% end %>
+  <% end %>
 </aside>

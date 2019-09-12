@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  #skip_before_filter :verify_authenticity_token
   helper_method :current_user
   protect_from_forgery with: :exception
   before_action :set_search
