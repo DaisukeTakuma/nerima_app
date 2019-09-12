@@ -38,6 +38,7 @@ class PostsController < ApplicationController
         #if文で保存すると、複数回render、redirectしてしまうため使用不可
         post.save
         redirect_to post_path, flash: {success: "「#{post.title}」を投稿しました。"}
+        return
       end
     end
   end
