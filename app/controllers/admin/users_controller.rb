@@ -61,7 +61,7 @@ class Admin::UsersController < ApplicationController
   def destroy
     user = User.find(params[:id])
     user.destroy
-    redirect_to admin_users_url, flash: {success: "ユーザー「#{user.name}」を削除しました。ご利用ありがとうございました。"}
+    redirect_to root_url, flash: {success: "ユーザー「#{user.name}」を削除しました。ご利用ありがとうございました。"}
   end
 
   def following
