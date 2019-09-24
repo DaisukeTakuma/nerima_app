@@ -37,4 +37,4 @@ RUN npm install n -g \
     apt purge -y nodejs npm
 
 RUN rm -f nerima_app/tmp/pids/server.pid
-CMD ["bundle", "exec", "rails", "s", "puma", "-b", "0.0.0.0", "-p", "3000"]
+CMD ["bundle", "exec", "rails", "s", "puma", "-b", "0.0.0.0", "-p", "3000", "-e", "production"]
