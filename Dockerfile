@@ -32,10 +32,8 @@ RUN \
 COPY . $APP_ROOT
 EXPOSE  3000
 
-RUN RAILS_ENV=production
-
-RUN n stable \
-    apt purge -y nodejs npm \
-    npm install n -g
+RUN npm install n -g
+RUN n stable
+RUN apt purge -y nodejs npm
 
 RUN rm -f nerima_app/tmp/pids/server.pid
