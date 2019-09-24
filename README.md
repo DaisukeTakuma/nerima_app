@@ -31,9 +31,8 @@
  * Ruby on Rails 5.2.3
  * Rspecでテスト(記事投稿機能のみ、Capybara)
  * テスト用データ作成(factory_bot)
- * EC2
- * RDS
- * Docker
+ * EC2、ALB、RDS、ACM(SSL証明書)
+ * Docker(Railsアプリの基盤)
 
 ## フロント
  * HTML、CSS、BootStrap(全体の見た目)
