@@ -24,7 +24,7 @@ RUN \
   echo 'gem: --no-document' >> ~/.gemrc && \
   cp ~/.gemrc /etc/gemrc && \
   chmod uog+r /etc/gemrc && \
-  rm -rf ~/.gem && \
+  rm -rf ~/.gemrc && \
   bundle config --global build.nokogiri --use-system-libraries && \
   bundle config --global jobs 4 && \
   bundle install
@@ -32,8 +32,10 @@ RUN \
 COPY . $APP_ROOT
 EXPOSE  3000
 
-RUN npm install n -g \
-    n stable \
-    apt purge -y nodejs npm
+RUN RAILS_ENV=production
+
+RUN n stable \
+    apt purge -y nodejs npm \
+    npm install n -g
 
 RUN rm -f nerima_app/tmp/pids/server.pid
