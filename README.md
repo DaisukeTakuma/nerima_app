@@ -22,23 +22,24 @@
  * フォロー機能(ajax対応)
  * いいね機能(ajax対応、counter_culture)
 
+# クラウドアーキテクチャ
+ ![Untitled Diagram (2)](https://user-images.githubusercontent.com/52105565/65554127-a127b080-df63-11e9-96da-6bd7a316df57.jpg)
+
 # 使用技術一覧
-## バックエンド
+## バックエンド,インフラ
  * ruby 2.5.1
  * Ruby on Rails 5.2.3
  * Rspecでテスト(記事投稿機能のみ、Capybara)
  * テスト用データ作成(factory_bot)
+ * EC2
+ * RDS
+ * Docker
 
 ## フロント
  * HTML、CSS、BootStrap(全体の見た目)
  * JavaScript(投稿時、カテゴリにチェックを入れると他のカテゴリにはチェックが入れられない仕様に)
 
-## インフラ
- * heroku
- * Postgresql
-  
 # 今後の課題
  * Rspecによるテスト実装
- * 基盤にEC2とDockerの導入
  * フロントエンドの改良 
  * CIツールの導入
