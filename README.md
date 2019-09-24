@@ -2,6 +2,7 @@
  * ライフステージごとに、練馬区の使える行政情報を発信、共有するアプリケーション
  * 制作期間：3〜4週間
  * 制作中に意識したこと：railsの仕組みとエラー文から、問題を切り分けて調べずに解決する
+ * https://www.suketaku-dev.com/ 管理者用 ID：admin@example.com / Pass：password
  
 ![スクリーンショット 2019-09-25 7 17 54](https://user-images.githubusercontent.com/52105565/65554489-b2bd8800-df64-11e9-9e24-796312972699.png)
 
